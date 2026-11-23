@@ -22,7 +22,7 @@ Identifiquem a revisão do firmware e as versões das bibliotecas. Expliquem o f
 
 ## 3. Procedimento experimental
 
-Registrem a distância medida, o ambiente, o sentido da transmissão, a mensagem ou imagem de entrada e o perfil de FCS. Para cada ensaio, descrevam como reproduzi-lo. Indiquem quando o erro foi injetado por software e as condições do ensaio com ruído físico.
+Registrem a distância medida, o ambiente, o sentido da transmissão, a mensagem ou imagem de entrada e o CRC-8 do quadro de exemplo. Para cada ensaio, descrevam como reproduzi-lo. Indiquem quando o erro foi injetado por software e as condições do ensaio com ruído físico.
 
 ## 4. Resultados e evidências
 
@@ -31,7 +31,7 @@ Guardem fotos e capturas em [imagens](imagens/) e registros de texto em [logs](l
 | Ensaio | Condição medida | Resultado observado | Figura ou log |
 | --- | --- | --- | --- |
 | Texto A → B e B → A | | | |
-| Checksum e CRC-8 | | | |
+| CRC-8 de um quadro DATA | | | |
 | Quadro corrompido e perda de ACK | | | |
 | Distância superior a 1 m e ruído ambiental | | | |
 | Imagem de referência e reconstruída | | | |
