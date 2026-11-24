@@ -286,6 +286,10 @@ py computador/enviar_imagem_TCD.py COM9 computador/exemplos/tcd_128x64.png --siz
 
 A resolução indicada é um exemplo de reprodução, não um dado registrado do T14 original. A equipe confirmou o sucesso funcional. O circuito A não possui OLED.
 
+## Acervo de imagens do projeto
+
+**[Acessar acervo geral de imagens](relatorio/imagens/README.md)** — fotografias, esquemáticos finais, imagens de transmissão e registros técnicos organizados por categoria. A carga dos arquivos originais está pendente.
+
 ## 8. Resultados experimentais
 
 **[Galeria de evidências por teste (T01–T14)](relatorio/evidencias/README.md)** — pastas individuais para as capturas e fotografias, com indicação dos registros disponíveis e pendentes.

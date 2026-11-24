@@ -6,6 +6,10 @@ Equipe: Enzo Aurélio, Felipe Enzo e Enzo Cristian
 
 O [README principal](../README.md) contém a documentação completa do projeto e o roteiro de reprodução. O relatório revisado em LaTeX, com 28 páginas, foi preparado pela equipe e reserva espaço para T12.
 
+## Acervo geral de imagens
+
+[Consultar as categorias do acervo](imagens/README.md).
+
 ## Galeria por teste
 
 Acesse a [galeria de evidências T01–T14](evidencias/README.md), organizada em pastas individuais.
