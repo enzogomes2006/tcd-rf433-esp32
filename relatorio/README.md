@@ -1,43 +1,36 @@
-# Relatório do projeto
+# Relatório técnico — TCD
 
-**Transmissão de dados confiável via rádio**
+IFMT · Campus Cuiabá – Octayde Jorge da Silva  
+Transmissão e Comunicação de Dados · Professor Ruy Barbosa  
+Equipe: Enzo Aurélio, Felipe Enzo e Enzo Cristian
 
-IFMT · Campus Cuiabá – Octayde Jorge da Silva
+O [README principal](../README.md) contém a documentação completa do projeto e o roteiro de reprodução. O relatório revisado em LaTeX, com 28 páginas, foi preparado pela equipe e reserva espaço para T12.
 
-Transmissão e Comunicação de Dados · Professor Ruy Barbosa
+## Estado experimental
 
-Enzo Aurélio, Felipe Enzo e Enzo Cristian
+| Ensaios | Situação | Evidências no acervo da equipe |
+| --- | --- | --- |
+| T01–T09 | Realizados | Capturas dos terminais |
+| T10 e T11 | Aprovados funcionalmente | Relato, sem logs específicos |
+| T12 | Pendente formalmente | A coletar |
+| T13 | Aprovado funcionalmente | Fotografia do OLED e relato |
+| T14 | Aprovado funcionalmente | Relato, sem logs específicos |
 
-*Documento em elaboração pela equipe. Ao concluir a redação, salve o PDF final nesta pasta e acrescente o link no README principal.*
+T08 e T09 possuem ressalvas de contadores acumulados. Não inventar valores ausentes. Consultar a seção 8 do README principal.
 
-## 1. Objetivo e montagem
+## Organização dos anexos
 
-Descrevam o que os dois computadores trocaram, o papel de cada ESP32 e o caminho dos ACKs. Incluam os esquemas A e B, os modelos dos módulos, a alimentação, as ligações e a identificação do display usado.
+- `imagens/`: fotos de A e B, componentes, antenas, imagem de origem e T13.
+- `logs/`: capturas seriais T01–T09 e registros posteriores.
+- `Relatorio_TCD_Sem_Referencias.pdf`: revisão do PDF a anexar.
+- `latex/`: fonte editável e figuras do projeto Overleaf a anexar.
 
-<!-- Exemplo, após adicionar o arquivo: ![Circuito B com o display ligado](imagens/circuito-b.jpg) -->
+A versão integral do PDF, os arquivos LaTeX e as evidências de alta resolução ainda precisam ser publicados nesta pasta.
 
-## 2. Protocolo e implementação
+## T12 — registro reservado
 
-Identifiquem a revisão do firmware e as versões das bibliotecas. Expliquem o formato do quadro, o preenchimento, um cálculo de FCS e uma retransmissão observada. Relacionem o exemplo aos bytes do log. O [README do projeto](../README.md) contém o exemplo de referência com o texto TCD.
+Executar o roteiro da seção 7 do README principal. Guardar logs de envio/recepção, CRC32, SHA-256 dos pixels nas duas pontas, PBM de referência, arquivos reconstruídos e fotografia do OLED. Registrar duração e contadores quando medidos. Preencher o espaço reservado no relatório após o ensaio.
 
-## 3. Procedimento experimental
+## Revisão de referência do código
 
-Registrem a distância medida, o ambiente, o sentido da transmissão, a mensagem ou imagem de entrada e o CRC-8 do quadro de exemplo. Para cada ensaio, descrevam como reproduzi-lo. Indiquem quando o erro foi injetado por software e as condições do ensaio com ruído físico.
-
-## 4. Resultados e evidências
-
-Guardem fotos e capturas em [imagens](imagens/) e registros de texto em [logs](logs/). Numerem cada figura e usem a legenda para explicar qual resultado ela demonstra. Incluam o texto no display, os dois lados da troca por rádio e a imagem reconstruída no laptop.
-
-| Ensaio | Condição medida | Resultado observado | Figura ou log |
-| --- | --- | --- | --- |
-| Texto A → B e B → A | | | |
-| CRC-8 de um quadro DATA | | | |
-| Quadro corrompido e perda de ACK | | | |
-| Distância superior a 1 m e ruído ambiental | | | |
-| Imagem de referência e reconstruída | | | |
-
-Para as imagens, anotem resolução, contagem de bytes e SHA-256 dos pixels em cada ponta. Para o ARQ, identifiquem uma tentativa que expirou, a retransmissão com a mesma sequência e a entrega do conteúdo uma única vez.
-
-## 5. Conclusão e referências
-
-Registrem o que os ensaios demonstraram, as limitações observadas e as fontes efetivamente consultadas. Indiquem a configuração usada na apresentação e o commit exato do código.
+[35d4604](https://github.com/enzogomes2006/tcd-rf433-esp32/commit/35d4604424820aa82c8c3423637b6a23ae0019b2) — os dois sketches V7 e os dois scripts Python permanecem inalterados.
