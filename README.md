@@ -288,6 +288,8 @@ A resolução indicada é um exemplo de reprodução, não um dado registrado do
 
 ## 8. Resultados experimentais
 
+**[Galeria de evidências por teste (T01–T14)](relatorio/evidencias/README.md)** — pastas individuais para as capturas e fotografias, com indicação dos registros disponíveis e pendentes.
+
 Antes dos ensaios, concluir transmissões anteriores, zerar contadores em ambos os nós e registrar condições físicas. Após o teste, coletar logs e /status sem zerar os contadores.
 
 | ID | Procedimento | Resultado | Evidência |
