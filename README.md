@@ -302,7 +302,7 @@ A resolução indicada é um exemplo de reprodução, não um dado registrado do
 
 ## Acervo de imagens do projeto
 
-**[Acessar acervo geral de imagens](relatorio/imagens/README.md)** — fotografias, esquemáticos finais, imagens de transmissão e registros técnicos organizados por categoria. A carga dos arquivos originais está pendente.
+**[Acessar acervo geral de imagens](relatorio/imagens/README.md)** — fotografias, esquemáticos finais, imagens de transmissão e registros técnicos organizados por categoria. As imagens disponiveis estao publicadas nas galerias.
 
 ## 8. Resultados experimentais
 
