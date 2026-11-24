@@ -2,7 +2,7 @@
 
 [README principal](../../README.md) · [Galeria por teste](../evidencias/README.md)
 
-O pacote de imagens foi organizado em sete categorias, totalizando 122 arquivos de imagem, incluindo versões selecionadas para o relatório e registros originais. As pastas abaixo estão preparadas para receber os arquivos; a carga dos originais ainda está pendente. A imagem de referência 128×64 já está disponível.
+O pacote de imagens foi organizado em sete categorias, totalizando 122 arquivos de imagem, incluindo versões selecionadas para o relatório e registros originais. As pastas abaixo estão preparadas para receber os arquivos; a carga dos demais originais ainda está pendente; os esquemáticos A e B já estão disponíveis. A imagem de referência 128×64 já está disponível.
 
 | Pasta | Conteúdo | Imagens preparadas |
 | --- | --- | ---: |

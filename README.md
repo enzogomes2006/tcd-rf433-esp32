@@ -103,6 +103,20 @@ Os desenhos são funcionais. A alimentação RF aparece como VIN/5 V nos desenho
 
 Com os módulos desligados, montar as placas nas protoboards, soldar as antenas, interligar os sinais, alimentar corretamente os módulos e instalar o OLED somente no B. Conferir curtos antes de conectar USB. O OLED é monocromático logicamente, embora o painel físico seja amarelo/azul. O enunciado menciona LCD; confirmar com o docente a aceitação da substituição.
 
+### Esquemáticos dos circuitos A e B
+
+As figuras abaixo são os desenhos originais produzidos durante o desenvolvimento do projeto. Os arquivos em resolução original estão na [pasta de esquemáticos](relatorio/imagens/03-esquematicos-finais/).
+
+**Circuito A — ESP32 e módulos TX/RX RF 433 MHz**
+
+![Esquemático do circuito A](relatorio/imagens/03-esquematicos-finais/circuito-a.png)
+
+**Circuito B — ESP32, módulos TX/RX RF 433 MHz e OLED SSD1306**
+
+![Esquemático do circuito B](relatorio/imagens/03-esquematicos-finais/circuito-b.png)
+
+> **Atenção:** os desenhos originais são ilustrativos e apresentam inconsistências gráficas nas ligações de alimentação, GND e OLED. Para montagem, siga o mapeamento funcional acima, confira a tensão dos módulos e não aplique 5 V diretamente aos GPIOs do ESP32.
+
 ## 3. Confecção e soldagem das antenas
 
 Foram reaproveitados condutores de cabo de rede Ethernet. Os fios foram preparados e soldados aos pontos de antena dos módulos RF.
