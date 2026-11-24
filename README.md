@@ -28,6 +28,20 @@ Os quatro arquivos usados na bancada estão disponíveis separadamente. Seus con
 
 Outros arquivos: [Dependências Python](computador/requirements.txt) · [Imagem de referência](computador/exemplos/tcd_128x64.png) · [Enunciado](docs/enunciado.pdf) · [Relatório e evidências](relatorio/README.md).
 
+### Acesso rápido — testes e acervos de imagens
+
+| Acervo / documentação | Conteúdo |
+| --- | --- |
+| [**Resultados experimentais**](#8-resultados-experimentais) | Procedimentos, resultados e contadores dos testes T01–T14 |
+| [**Evidências por teste (T01–T14)**](relatorio/evidencias/README.md) | Capturas e fotografias dos ensaios disponíveis |
+| [**Acervo geral de imagens**](relatorio/imagens/README.md) | Galeria visual do projeto |
+| [Fotos selecionadas](relatorio/imagens/ens/01-fotos-selecionadas/) | Fotografias utilizadas no relatório |
+| [Fotos originais](relatorio/imagens/ens/02-fotos-originais/) | Componentes, montagem dos circuitos e OLED |
+| [Esquemáticos dos circuitos e antenas](relatorio/imagens/ens/03-esquematicos-finais/) | Diagramas de A, B e antenas TX/RX |
+| [Imagens de transmissão](relatorio/imagens/ens/04-imagens-transmissao/) | Artes e imagens de referência |
+| [Capturas dos testes](relatorio/imagens/ens/05-testes/) | Registros visuais organizados por ensaio |
+| [Histórico de desenvolvimento](relatorio/imagens/ens/07-historico-desenvolvimento/) | Versões anteriores e ensaios preliminares |
+
 Revisão de referência dos códigos: [35d4604](https://github.com/enzogomes2006/tcd-rf433-esp32/commit/35d4604424820aa82c8c3423637b6a23ae0019b2). Não substituir a V7 pela variante experimental V7R sem repetir a validação.
 
 ## 2. Arquitetura e montagem
