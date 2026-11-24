@@ -15,6 +15,12 @@ O sistema conecta dois computadores por meio de dois ESP32. Cada computador comu
 <p align="center"><img src="computador/exemplos/tcd_128x64.png" width="384" alt="Arte monocromática TCD de referência"></p>
 <p align="center"><em>Arte de referência preparada em 128×64 para reprodução. Não é o arquivo reconstruído do ensaio original.</em></p>
 
+### Relatório técnico
+
+**[Consultar relatório técnico (PDF)](relatorio/Relatorio_TCD_Preliminar.pdf)** · 28 páginas · Versão preliminar
+
+Documento de acompanhamento do projeto, com arquitetura, montagem, protocolo, resultados experimentais e evidências. Em revisão pela equipe; a identificação de capa e o registro formal do T12 ainda precisam ser completados.
+
 ## 1. Códigos principais
 
 Os quatro arquivos usados na bancada estão disponíveis separadamente. Seus conteúdos são idênticos aos originais V7; apenas os nomes foram adaptados à organização do repositório.
@@ -32,6 +38,7 @@ Outros arquivos: [Dependências Python](computador/requirements.txt) · [Imagem 
 
 | Acervo / documentação | Conteúdo |
 | --- | --- |
+| [**Relatório técnico (PDF)**](relatorio/Relatorio_TCD_Preliminar.pdf) | Documento de 28 páginas — versão preliminar |
 | [**Resultados experimentais**](#8-resultados-experimentais) | Procedimentos, resultados e contadores dos testes T01–T14 |
 | [**Evidências por teste (T01–T14)**](relatorio/evidencias/README.md) | Capturas e fotografias dos ensaios disponíveis |
 | [**Acervo geral de imagens**](relatorio/imagens/README.md) | Galeria visual do projeto |
@@ -370,7 +377,7 @@ A entrega foi bem-sucedida nos ensaios relatados, mas muitas retransmissões e d
 
 ## 9. Relatório e demonstração
 
-Consultar [documentação do relatório](relatorio/README.md). O relatório LaTeX revisado contempla montagem, esquemáticos, antenas, protocolo, FCS, resultados e espaço para T12. O PDF e evidências completas do acervo ainda devem ser anexados ao repositório.
+Consultar [relatório técnico em PDF — versão preliminar](relatorio/Relatorio_TCD_Preliminar.pdf) e [documentação complementar](relatorio/README.md). O relatório contempla montagem, esquemáticos, antenas, protocolo, FCS, resultados e espaço reservado ao T12. O PDF está disponível para consulta; a revisão final e a publicação dos arquivos-fonte LaTeX permanecem pendentes.
 
 Na demonstração, mostrar circuitos e antenas, texto bidirecional e OLED, autoteste, descarte por CRC e retransmissão, omissão de ACK, distância acima de 1 m, condição física adversa e imagem reconstruída com comparação dos hashes.
 

@@ -6,6 +6,16 @@ Equipe: Enzo Aurélio, Felipe Enzo e Enzo Cristian
 
 O [README principal](../README.md) contém a documentação completa do projeto e o roteiro de reprodução. O relatório revisado em LaTeX, com 28 páginas, foi preparado pela equipe e reserva espaço para T12.
 
+## Documento técnico
+
+| Documento | Formato | Situação |
+| --- | --- | --- |
+| [**Transmissão confiável de textos e imagens via rádio de 433 MHz entre dois ESP32**](Relatorio_TCD_Preliminar.pdf) | PDF · 28 páginas | Versão preliminar |
+
+**[Abrir relatório em PDF](Relatorio_TCD_Preliminar.pdf)**
+
+O documento está disponível para acompanhamento e consulta. A identificação da capa, o registro do T12 e a revisão final pela equipe continuam pendentes. O conteúdo do PDF foi preservado integralmente.
+
 ## Acervo geral de imagens
 
 [Consultar as categorias do acervo](imagens/README.md).
@@ -28,12 +38,12 @@ T08 e T09 possuem ressalvas de contadores acumulados. Não inventar valores ause
 
 ## Organização dos anexos
 
-- `imagens/`: fotos de A e B, componentes, antenas, imagem de origem e T13.
-- `logs/`: capturas seriais T01–T09 e registros posteriores.
-- `Relatorio_TCD_Sem_Referencias.pdf`: revisão do PDF a anexar.
-- `latex/`: fonte editável e figuras do projeto Overleaf a anexar.
+- [Relatório técnico em PDF](Relatorio_TCD_Preliminar.pdf): versão preliminar disponível.
+- [Acervo de imagens](imagens/README.md): fotos, esquemáticos, antenas e imagens do projeto.
+- [Evidências experimentais](evidencias/README.md): capturas seriais e fotografias organizadas por teste.
+- `latex/`: fonte editável e figuras do Overleaf, ainda não publicadas.
 
-A versão integral do PDF, os arquivos LaTeX e as evidências de alta resolução ainda precisam ser publicados nesta pasta.
+A versão final do relatório será disponibilizada após a revisão e complementação da equipe.
 
 ## T12 — registro reservado
 
