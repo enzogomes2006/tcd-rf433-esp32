@@ -4,7 +4,7 @@ Projeto final de **Transmissão e Comunicação de Dados** — IFMT, Campus Cuia
 
 | Equipe | Professor | Entrega prevista |
 | --- | --- | --- |
-| Enzo Aurélio, Felipe Enzo e Enzo Cristian | Ruy Barbosa | 26/11/2026 |
+| Enzo Aurélio, Felipe Enzo e Enzo Christyan | Ruy Barbosa | 26/11/2026 |
 
 **ESP32 · RF 433 MHz · CRC-8 · 4B6B · Stop-and-Wait ARQ · Texto e imagens bidirecionais**
 
