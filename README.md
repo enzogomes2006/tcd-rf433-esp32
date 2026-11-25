@@ -10,16 +10,16 @@ Projeto final de **Transmissão e Comunicação de Dados** — IFMT, Campus Cuia
 
 O sistema conecta dois computadores por meio de dois ESP32. Cada computador comunica-se com sua placa via USB; entre as placas, os dados e ACKs trafegam exclusivamente pelo rádio. A versão de referência é a V7 original.
 
-**Estado experimental: 13 de 14 ensaios realizados com sucesso funcional, conforme registros e relatos da equipe. T12 (imagem 64×32 A → B) permanece pendente formalmente.**
+**Estado experimental: 14 ensaios executados conforme registros e relatos da equipe. T10 e T11 tiveram sucesso funcional; T12–T14 tiveram integridade confirmada por CRC32 e SHA-256. T06 permanece com comprovação parcial; não se afirma aprovação formal de todos os testes.**
 
 <p align="center"><img src="computador/exemplos/tcd_128x64.png" width="384" alt="Arte monocromática TCD de referência"></p>
 <p align="center"><em>Arte de referência preparada em 128×64 para reprodução. Não é o arquivo reconstruído do ensaio original.</em></p>
 
 ### Relatório técnico
 
-**[Consultar relatório técnico (PDF)](relatorio/Relatorio_TCD_Preliminar.pdf)** · 28 páginas · Versão preliminar
+**[Consultar relatório técnico completo (PDF)](relatorio/Relatorio_TCD_Final.pdf)** · 52 páginas · LaTeX
 
-Documento de acompanhamento do projeto, com arquitetura, montagem, protocolo, resultados experimentais e evidências. Em revisão pela equipe; a identificação de capa e o registro formal do T12 ainda precisam ser completados.
+Documentação do projeto com arquitetura, montagem, esquemáticos atualizados, protocolo, resultados e evidências dos 14 ensaios. Consulte também o [relatório de ensaios (PDF)](relatorio/Relatorio_Ensaios_V7.pdf) e o [projeto LaTeX editável](relatorio/latex/).
 
 ## 1. Códigos principais
 
@@ -38,7 +38,9 @@ Outros arquivos: [Dependências Python](computador/requirements.txt) · [Imagem 
 
 | Acervo / documentação | Conteúdo |
 | --- | --- |
-| [**Relatório técnico (PDF)**](relatorio/Relatorio_TCD_Preliminar.pdf) | Documento de 28 páginas — versão preliminar |
+| [**Relatório técnico completo (PDF)**](relatorio/Relatorio_TCD_Final.pdf) | Documento de 52 páginas com esquemáticos atualizados |
+| [Relatório de ensaios V7 (PDF)](relatorio/Relatorio_Ensaios_V7.pdf) | Procedimentos, resultados e evidências de T01–T14 |
+| [Projeto LaTeX](relatorio/latex/) | Fontes editáveis e figuras para Overleaf |
 | [**Resultados experimentais**](#8-resultados-experimentais) | Procedimentos, resultados e contadores dos testes T01–T14 |
 | [**Evidências por teste (T01–T14)**](relatorio/evidencias/README.md) | Capturas e fotografias dos ensaios disponíveis |
 | [**Acervo geral de imagens**](relatorio/imagens/README.md) | Galeria visual do projeto |
@@ -293,7 +295,7 @@ Depois, no A:
 py computador/enviar_imagem_TCD.py COM17 computador/exemplos/tcd_128x64.png --size 64x32 --sem-dither
 ```
 
-Esperado: 256 bytes, CRC32 correto, SHA-256 dos pixels iguais, arquivos reconstruídos e OLED. **Ensaio formal pendente.**
+Resultado de 24/11: 256/256 bytes, CRC32 DAF56504 e SHA-256 coincidente; 1,12 m em 112 s. END confirmado na segunda tentativa. A execução real utilizou COM20 (A) e COM8 (B). Os comandos acima são exemplos de reprodução, com arquivo de referência do repositório; a execução real utilizou imagem4.jpeg.
 
 ### A → B (T13, 128×64)
 
@@ -303,7 +305,7 @@ Com receptor B em execução:
 py computador/enviar_imagem_TCD.py COM17 computador/exemplos/tcd_128x64.png --size 128x64 --sem-dither
 ```
 
-A equipe relatou sucesso e possui fotografia do OLED exibindo a imagem. Esperado: 1024 bytes, CRC32 válido, hashes iguais e reconstrução. Os hashes do ensaio original não estão disponíveis.
+Resultado de 24/11: 1.024/1.024 bytes, CRC32 2749D731 e SHA-256 coincidente; duração de 720 s. Distância reduzida de 1,12 m para 0,60 m durante a sessão. END confirmado na primeira tentativa.
 
 ### B → A (T14)
 
@@ -319,7 +321,7 @@ Depois, no B:
 py computador/enviar_imagem_TCD.py COM9 computador/exemplos/tcd_128x64.png --size 64x32 --sem-dither
 ```
 
-A resolução indicada é um exemplo de reprodução, não um dado registrado do T14 original. A equipe confirmou o sucesso funcional. O circuito A não possui OLED.
+Resultado de 24/11: imagem 64×32, 256/256 bytes, CRC32 607BACD6 e SHA-256 coincidente; 1,15 m, tempo estimado de 120–180 s na tentativa bem-sucedida. A primeira sessão foi interrompida; a execução bem-sucedida utilizou COM5 (B) e COM20 (A). O circuito A não possui OLED.
 
 ## Acervo de imagens do projeto
 
@@ -338,15 +340,15 @@ Antes dos ensaios, concluir transmissões anteriores, zerar contadores em ambos 
 | T03 | Texto B → A | Entrega; 2 reenvios | Serial |
 | T04 | Texto longo | Fragmentação, remontagem e entrega; 18 reenvios | Serial |
 | T05 | /erro em A | 1 CRC errado detectado e recuperado | Serial |
-| T06 | /ruido 3 em A | 3 CRCs errados no B, entrega contabilizada | Status; texto integral não disponível na captura |
+| T06 | /ruido 3 em A | 3 CRCs errados no B; 1 mensagem contabilizada | Comprovação parcial: não há confirmação das duas mensagens previstas |
 | T07 | /perderack em B | 1 omissão, recuperação e controle de duplicatas | Serial |
 | T08 | /perderend em B | END confirmado na terceira tentativa | Serial, ressalva dos contadores |
 | T09 | /lote 10 em curta distância | 10/10 recebidas | Serial, ressalva dos contadores |
-| T10 | Distância acima de 1 m | Aprovado funcionalmente | Relato da equipe; 1,10 m é referência do plano, sem registro específico |
-| T11 | Obstáculos/perturbação física | Aprovado funcionalmente | Relato da equipe; sem logs específicos |
-| T12 | Imagem 64×32 A → B | **Pendente formalmente** | A preencher |
-| T13 | Imagem 128×64 A → B | Aprovado funcionalmente | Relato e foto do OLED no acervo |
-| T14 | Imagem B → A | Aprovado funcionalmente | Relato da equipe; sem logs ou hashes específicos |
+| [T10](relatorio/evidencias/T10/) | Distância acima de 1 m | 10/10; 1,12 m; 19 reenvios | Sucesso funcional; fotos e logs |
+| [T11](relatorio/evidencias/T11/) | Obstáculo passivo | 10/10 em ambas as condições | Sucesso funcional; fotos e logs |
+| [T12](relatorio/evidencias/T12/) | Imagem 64×32 A → B | 256 bytes; 112 s; 1,12 m | Integridade confirmada; PBM, hashes e OLED |
+| [T13](relatorio/evidencias/T13/) | Imagem 128×64 A → B | 1.024 bytes; 720 s; distância variável | Integridade confirmada; PBM, hashes e OLED |
+| [T14](relatorio/evidencias/T14/) | Imagem 64×32 B → A | 256 bytes; 1,15 m; 120–180 s estimados | Integridade confirmada; PBM, hashes e PNG |
 
 ### Contadores observados
 
@@ -359,25 +361,33 @@ Antes dos ensaios, concluir transmissões anteriores, zerar contadores em ambos 
 | T07 | A | 8 | 3 | 5 | 0 | 5 | 1 |
 | T08 | A | 15 | 3 | 8 | 0 | 8 | 1 |
 | T09 | A | 145 | 32 | 113 | 0 | 107 | 10 |
+| T10 | A | 49 | 30 | 19 | 0 | 19 | 10 |
+| T11 sem mochila | A | 44 | 30 | 14 | 0 | 14 | 10 |
+| T11 com mochila | A | 43 | 30 | 13 | 0 | 13 | 10 |
 
 T08: contadores incluem atividade residual; não atribuir todos os reenvios à omissão do END. T09: A contabilizou 11 mensagens enviadas, B recebeu 137 quadros válidos, 107 duplicatas e 10 mensagens completas. Os 30 quadros novos são coerentes com 2 DATA e 1 END por mensagem. Não calcular taxa exclusiva do lote a partir de contadores acumulados.
 
 A entrega foi bem-sucedida nos ensaios relatados, mas muitas retransmissões e descartes 4B6B indicam baixa eficiência do enlace em algumas condições. O protocolo recupera falhas observadas, não torna o canal imune a ruído.
 
-### Espaço reservado ao T12
+### Integridade das imagens e condições dos ensaios
 
-| Indicador | Resultado |
-| --- | --- |
-| Resolução | 64×32 |
-| Bytes esperados | 256 |
-| Bytes recebidos | Pendente |
-| CRC32 e SHA-256 dos pixels nas duas pontas | Pendente |
-| PBM, PNG e fotografia do OLED | Pendente |
-| Contadores, duração e conclusão | Pendente |
+| Teste | Pixels (bytes) | Distância | Tempo | CRC32 |
+| --- | ---: | --- | --- | --- |
+| T12 | 256 | 1,12 m | 112 s | `DAF56504` |
+| T13 | 1.024 | 1,12 → 0,60 m | 720 s | `2749D731` |
+| T14 | 256 | 1,15 m | 120–180 s (estimado) | `607BACD6` |
+
+SHA-256 dos pixels (coincidente entre emissão, recepção e PBM em cada ensaio):
+
+- T12: `80c42a279aaed29daa665e3ac66efb650d83e8d8bb86042519505986162c22f7`
+- T13: `4a9fee35ec9e4c6a73b0491bc91053fb49b46081fc9a32180939efd8ee7cae3e`
+- T14: `44b987a65d8511998c873caf6dbfe238a7006d68e8ec7152df4d82ffc2c71a92`
+
+T10: tempo estimado de 120–180 s. T11: 176 s com mochila e 200 s sem mochila; a diferença não demonstra melhora causada pelo obstáculo. T13 teve redução de distância durante a transmissão. T14 teve uma primeira tentativa interrompida; o tempo estimado corresponde à sessão bem-sucedida. Contadores totais de retransmissão de imagens não registrados. T06 permanece parcial; T10–T11 não exibem os dez textos integrais. T12–T13 têm PBM e hashes verificados, mas os PNGs originais não foram disponibilizados com identificação inequívoca. Fonte: [Relatório de ensaios V7, 24/11/2026](relatorio/Relatorio_Ensaios_V7.pdf).
 
 ## 9. Relatório e demonstração
 
-Consultar [relatório técnico em PDF — versão preliminar](relatorio/Relatorio_TCD_Preliminar.pdf) e [documentação complementar](relatorio/README.md). O relatório contempla montagem, esquemáticos, antenas, protocolo, FCS, resultados e espaço reservado ao T12. O PDF está disponível para consulta; a revisão final e a publicação dos arquivos-fonte LaTeX permanecem pendentes.
+Consultar o [relatório técnico completo (PDF)](relatorio/Relatorio_TCD_Final.pdf), o [relatório de ensaios](relatorio/Relatorio_Ensaios_V7.pdf), o [projeto LaTeX editável](relatorio/latex/) e a [documentação complementar](relatorio/README.md). O documento contempla montagem, esquemáticos atualizados, antenas, protocolo, FCS e os resultados consolidados dos 14 testes.
 
 Na demonstração, mostrar circuitos e antenas, texto bidirecional e OLED, autoteste, descarte por CRC e retransmissão, omissão de ACK, distância acima de 1 m, condição física adversa e imagem reconstruída com comparação dos hashes.
 

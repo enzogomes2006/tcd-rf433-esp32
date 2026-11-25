@@ -1,0 +1,17 @@
+\clearpage\section{Introdução e objetivos}
+A comunicação de dados por rádio está sujeita a atenuação, alterações de bits, perdas de quadros, interferência e atrasos. Em enlaces de baixo custo, a presença de um transmissor e um receptor não garante, por si só, que o conteúdo entregue seja igual ao conteúdo enviado. O projeto da disciplina propõe implementar os mecanismos de uma comunicação confiável entre dois computadores, utilizando dois ESP32 e módulos RF de 433 MHz, sem biblioteca pronta de protocolo RF como RadioHead.
+
+\setcounter{subsection}{0}\subsection{Objetivo geral}
+Implementar e demonstrar um sistema de comunicação bidirecional capaz de transmitir textos e imagens, identificar erros, recuperar quadros sem confirmação e evitar a duplicação de dados no receptor.
+
+\setcounter{subsection}{1}\subsection{Objetivos específicos}
+\begin{enumerate}
+\item Construir dois nós de comunicação, cada um com ESP32, transmissor e receptor de 433 MHz.
+\item Implementar enquadramento de dados, FCS por CRC-8, codificação 4B6B e controle de sequência.
+\item Aplicar Stop-and-Wait ARQ para transmitir e confirmar cada quadro e retransmitir quando necessário.
+\item Integrar o display OLED no circuito B e scripts Python para conversão, envio e reconstrução de imagens.
+\item Validar texto, fragmentação, erros simulados, perda de ACK, alcance, obstáculos e transmissão de imagens em ambos os sentidos.
+\end{enumerate}
+\setcounter{subsection}{2}\subsection{Requisitos e escopo}
+O enunciado requer comunicação exclusivamente por rádio entre as placas, distância superior a um metro, entrega íntegra, resistência a perturbações, código publicado, cálculo do FCS e evidências da demonstração. O display empregado é OLED SSD1306, em substituição ao LCD mencionado no enunciado; a aceitação pelo docente precisa ser confirmada. A análise diferencia corrupção simulada de perturbação física e não atribui medições a situações sem registro.
+

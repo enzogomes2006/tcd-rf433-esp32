@@ -1,0 +1,14 @@
+\clearpage\section{Conclusão}
+O projeto demonstra a implementação de um enlace bidirecional entre dois ESP32 utilizando módulos RF de 433 MHz. A integração do CRC-8, da codificação 4B6B, do Stop-and-Wait ARQ e da sequência alternada permite detectar quadros corrompidos, retransmitir dados sem confirmação e evitar a duplicação da carga útil. O display OLED do circuito B e os scripts Python possibilitam visualizar textos e reconstruir imagens no computador de destino.
+
+Os resultados de 24/11/2026 substituem a antiga pendência de T12: os três ensaios de imagem T12–T14 foram concluídos com concordância de tamanho, CRC32 e SHA-256 dos pixels, conforme o relatório de ensaios. O T10 demonstrou a conclusão de um lote de dez mensagens a 1,12 m e T11 concluiu os lotes com e sem mochila. O T13 exigiu redução da distância e o T14 demandou diagnóstico e nova sessão. Os quatorze testes foram executados segundo a equipe, com ressalva de comprovação parcial do T06 e limitações nos registros de outros ensaios.
+
+Conclui-se que o sistema atende funcionalmente aos objetivos demonstrados nos ensaios registrados, sem afirmar imunidade a ruído ou aprovação formal de todos os requisitos. O projeto integra os conceitos de transmissão e comunicação de dados à prática, com documentação e código disponíveis para reprodução e revisão.
+
+\subsubsection*{Referências documentais}
+{\small [1] IFMT. Projeto Final da Disciplina — Transmissão de dados confiável via rádio. Enunciado do docente, 2026.\par}
+{\small [2] Equipe TCD. Protocolo Oficial de Ensaios TCD V7, revisão de 23/11/2026.\par}
+{\small [3] Equipe TCD. Relatório de Ensaios — TCD V7, consolidação de 24/11/2026 (17 páginas). Reproduzido integralmente no Anexo B.\par}
+{\small [4] Equipe TCD. Relatório técnico anterior e acervo de fotografias, capturas e registros de montagem, 2026.\par}
+{\small [5] Repositório do projeto: \href{https://github.com/enzogomes2006/tcd-rf433-esp32}{github.com/enzogomes2006/tcd-rf433-esp32}. Revisão V7 de referência: 35d4604, indicada no README.\par}
+{\small [6] Repositório de estudo consultado no desenvolvimento: \href{https://github.com/lxinaider/esp32-rf433-arq}{github.com/lxinaider/esp32-rf433-arq}.\par}

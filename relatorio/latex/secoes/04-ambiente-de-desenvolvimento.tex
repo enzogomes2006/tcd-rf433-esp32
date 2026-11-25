@@ -1,0 +1,52 @@
+\clearpage\section{Ambiente de desenvolvimento}
+A implementação utiliza dois sketches Arduino/C++ e dois scripts Python. A revisão V7 é a referência de validação; a variante V7R foi experimental e não deve ser misturada com ela. O README registra o core ESP32 2.0.17 como ambiente de compilação de referência, sem exigir que seja a única versão compatível.
+
+\begin{table}[H]\centering\small\caption{Arquivos de implementação e suas funções}\label{tab:5}
+\rowcolors{2}{tcdlight}{white}\begin{tabularx}{\linewidth}{>{\hsize=1.0309\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=0.9691\hsize\linewidth=\hsize\raggedright\arraybackslash}X}
+\rowcolor{tcdnavy} \textcolor{white}{\textbf{Arquivo no GitHub}} & \textcolor{white}{\textbf{Função}} \\
+firmware/\allowbreak CircuitoA/\allowbreak CircuitoA.ino & Firmware do nó A. \\
+firmware/\allowbreak CircuitoB/\allowbreak CircuitoB.ino & Firmware do nó B e display. \\
+computador/\allowbreak enviar\_{}\allowbreak imagem\_{}\allowbreak TCD.py & Conversão e envio serial de pixels. \\
+computador/\allowbreak receber\_{}\allowbreak imagem\_{}\allowbreak TCD.py & Recepção, validação e reconstrução. \\
+computador/\allowbreak requirements.txt & Dependências dos scripts. \\
+\bottomrule\end{tabularx}\end{table}
+\setcounter{subsection}{0}\subsection{Instalação e gravação}
+\begin{enumerate}
+\item Instalar Arduino IDE e o suporte de placas ESP32 da Espressif Systems. Selecionar ESP32 Dev Module e a porta COM correspondente.
+\item Para o circuito B, instalar as bibliotecas Adafruit SSD1306, Adafruit GFX e Adafruit BusIO. A interface I\textsuperscript{2}C utiliza Wire.
+\item Abrir o sketch A, compilar e gravar no ESP32 A. Repetir no ESP32 B com o sketch B. Conferir a versão V7 no terminal de inicialização.
+\item Abrir os dois Monitores Seriais em 115200 baud, com final de linha “Nova linha”. Executar /teste nos dois nós.
+\item Instalar Python e dependências. Para transferências de imagens, fechar os Monitores Seriais antes de abrir as portas com os scripts.
+\end{enumerate}
+\par\noindent\begin{minipage}{\linewidth}
+\begin{lstlisting}
+python -m pip install pyserial pillow
+python -m serial.tools.list_ports
+\end{lstlisting}
+\end{minipage}\par
+{\small As portas COM variaram durante o projeto. Em T12–T13, foram A COM20 e B COM8; em T14, A COM20 e B COM5. Sempre conferir as portas atuais.\par}
+\setcounter{subsection}{1}\subsection{Fluxo de execução e comandos}
+O firmware trata os comandos locais do Monitor Serial e os dados recebidos pelo rádio. O texto comum é convertido em bytes, fragmentado em blocos de até 16 bytes e transmitido quadro a quadro. O circuito remoto acumula apenas os blocos novos até o END. O contador de sequência alternado evita anexar a mesma carga útil novamente.
+
+\begin{table}[H]\centering\small\caption{Comandos do Monitor Serial}\label{tab:6}
+\rowcolors{2}{tcdlight}{white}\begin{tabularx}{\linewidth}{>{\hsize=0.5278\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=1.4722\hsize\linewidth=\hsize\raggedright\arraybackslash}X}
+\rowcolor{tcdnavy} \textcolor{white}{\textbf{Comando}} & \textcolor{white}{\textbf{Uso}} \\
+/\allowbreak ajuda & Listar comandos disponíveis. \\
+/\allowbreak teste & Verificar CRC-8 e 4B6B localmente. \\
+/\allowbreak status & Exibir contadores acumulados. \\
+/\allowbreak zerarstats & Zerar contadores sem reiniciar sequência ou protocolo. \\
+/\allowbreak erro & Corromper um bit na próxima tentativa de DATA. \\
+/\allowbreak ruido N & Induzir N corrupções por software. \\
+/\allowbreak perderack & Omitir uma confirmação DATA. \\
+/\allowbreak perderend & Omitir uma confirmação END. \\
+/\allowbreak lote N & Enviar N mensagens numeradas, de 1 a 30. \\
+Texto comum & Enviar uma mensagem ao outro circuito. \\
+\bottomrule\end{tabularx}\end{table}
+\subsubsection*{Procedimento de envio de texto}
+\begin{enumerate}
+\item Aguardar a conclusão de toda sessão anterior. Executar /zerarstats nos dois monitores quando necessário.
+\item Digitar o texto apenas no monitor do emissor. Observar as confirmações DATA e END.
+\item Conferir TEXTO COMPLETO no receptor e a apresentação no OLED quando o destino for B. Registrar /status nos dois circuitos antes de zerar contadores.
+\end{enumerate}
+O comando /lote deve conter espaço antes do número. /zerarstats não redefine o estado de comunicação. Se a sessão não terminar, anotar os logs e reiniciar ambos os nós para recuperar uma sessão sincronizada, conforme o protocolo de ensaios.
+

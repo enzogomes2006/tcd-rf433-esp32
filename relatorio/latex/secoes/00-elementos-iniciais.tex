@@ -1,0 +1,19 @@
+\clearpage\section*{Resumo}\addcontentsline{toc}{section}{Resumo}
+Este relatório descreve o desenvolvimento, a montagem e a validação de um enlace de comunicação bidirecional entre dois microcontroladores ESP32, por meio de módulos transmissores e receptores de rádio de 433 MHz. Os computadores comunicam-se localmente com os ESP32 via USB, enquanto as placas trocam dados exclusivamente pelo enlace RF. O protocolo implementado em Arduino/C++ utiliza quadros DATA, ACK e END, codificação 4B6B, verificação de integridade CRC-8 e recuperação de falhas por Stop-and-Wait ARQ, com controle de sequência alternada. Scripts Python convertem imagens em bitmaps monocromáticos, realizam a transferência serial e reconstroem os arquivos no destino. O circuito B contém um display OLED SSD1306 para visualização de textos e imagens.
+
+A validação seguiu o protocolo V7 de 23/11/2026, com resultados consolidados em 24/11/2026. Os quatorze ensaios foram executados segundo a equipe; os registros T01–T09 documentam o funcionamento textual, a detecção de corrupção e a recuperação de confirmações. O T06 possui comprovação parcial, pois não há evidência suficiente das duas mensagens previstas. No T10, dez mensagens foram recebidas a 1,12 m; no T11, lotes de dez mensagens foram concluídos com e sem obstáculo. T12, T13 e T14 demonstraram reconstrução de imagens de 256, 1.024 e 256 bytes, respectivamente, com concordância de CRC32 e SHA-256 dos pixels. No T13, a distância foi reduzida durante o envio; no T14, uma tentativa foi interrompida antes da sessão bem-sucedida.
+
+Os resultados demonstram a aplicação prática de enquadramento, detecção de erros, controle de fluxo, retransmissão e comunicação sem fio nos casos observados. O número de reenvios, os descartes 4B6B e a duração das transferências evidenciam limitações de eficiência e estabilidade, não permitindo afirmar imunidade a ruído nem aprovação formal irrestrita de todos os critérios. São apresentados os procedimentos de reprodução, fotografias da montagem, esquemáticos funcionais, contadores, hashes e registros experimentais.
+
+\textbf{Palavras-chave:} ESP32; RF 433 MHz; CRC-8; 4B6B; Stop-and-Wait ARQ; transmissão de imagens.
+
+\subsubsection*{Base documental}
+Este texto integra o relatório técnico anterior, o protocolo oficial V7, a documentação do repositório e o relatório de ensaios consolidado de 24/11/2026. Os dados do último documento prevalecem sobre os estados experimentais anteriores. NR significa não registrado. As fotografias e capturas foram recuperadas dos documentos fornecidos pela equipe.
+
+{\small Repositório: \href{https://github.com/enzogomes2006/tcd-rf433-esp32}{github.com/enzogomes2006/tcd-rf433-esp32}\par}
+\clearpage
+\begingroup\small\setstretch{1.0}\setlength{\parskip}{0pt}\tableofcontents\endgroup
+\clearpage
+\begingroup\footnotesize\setstretch{1.0}\setlength{\parskip}{0pt}\listoffigures\endgroup
+\clearpage
+\begingroup\small\setstretch{1.0}\setlength{\parskip}{0pt}\listoftables\endgroup

@@ -1,0 +1,88 @@
+\clearpage\section{Protocolo de comunicação}
+A UART Serial2 opera a 1200 baud, 8N1; a comunicação USB utiliza 115200 baud. A unidade lógica de transmissão possui 21 bytes, mesmo quando o campo DATA contém menos de 16 bytes úteis. Os bytes restantes são preenchidos com zero.
+
+\begin{table}[H]\centering\small\caption{Estrutura do quadro lógico}\label{tab:7}
+\rowcolors{2}{tcdlight}{white}\begin{tabularx}{\linewidth}{>{\hsize=0.7010\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=0.6186\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=0.4536\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=2.2268\hsize\linewidth=\hsize\raggedright\arraybackslash}X}
+\rowcolor{tcdnavy} \textcolor{white}{\textbf{Campo}} & \textcolor{white}{\textbf{Posição}} & \textcolor{white}{\textbf{Bytes}} & \textcolor{white}{\textbf{Função}} \\
+FLAG & 0 & 1 & 0x7E; início do quadro. \\
+TYPE & 1 & 1 & DATA=0; ACK=1; END=2. \\
+SEQ & 2 & 1 & Sequência alternada 0 ou 1. \\
+LEN & 3 & 1 & Comprimento útil de DATA. \\
+DATA & 4–19 & 16 & Dados e preenchimento. \\
+FCS & 20 & 1 & CRC-8 sobre TYPE, SEQ, LEN e DATA. \\
+\bottomrule\end{tabularx}\end{table}
+\setcounter{subsection}{0}\subsection{Enquadramento e estados}
+DATA transporta a carga útil. ACK confirma a recepção de um quadro válido e deve corresponder ao número de sequência esperado. END delimita a sessão e também exige ACK. O transmissor só avança após a confirmação; o receptor utiliza a sequência para identificar uma repetição.
+
+\begin{table}[H]\centering\small\caption{Parâmetros de referência do firmware V7}\label{tab:8}
+\rowcolors{2}{tcdlight}{white}\begin{tabularx}{\linewidth}{>{\hsize=1.0722\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=0.9278\hsize\linewidth=\hsize\raggedright\arraybackslash}X}
+\rowcolor{tcdnavy} \textcolor{white}{\textbf{Parâmetro de referência V7}} & \textcolor{white}{\textbf{Valor}} \\
+Preâmbulo & 32 bytes lógicos 0x2A, codificados em 4B6B. \\
+Quadro lógico /\allowbreak  payload & 21 bytes /\allowbreak  até 16 bytes. \\
+Timeout ACK /\allowbreak  leitura de quadro & 5000 ms /\allowbreak  1600 ms. \\
+Espera antes do ACK /\allowbreak  intervalo entre cópias & 180 ms /\allowbreak  35 ms. \\
+Cópias de ACK /\allowbreak  pausa após ACK válido & 2 /\allowbreak  1200 ms. \\
+Limite de reenvios & Sem limite no firmware. \\
+Buffer texto /\allowbreak  imagem & 512 /\allowbreak  1024 bytes. \\
+\bottomrule\end{tabularx}\end{table}
+Esses parâmetros correspondem à documentação V7. A pausa, as cópias de ACK e o preâmbulo aumentam a duração da transferência, mas buscam reduzir problemas observados no enlace RF.
+
+\setcounter{subsection}{1}\subsection{Cálculo do FCS por CRC-8}
+O FCS (Frame Check Sequence) é calculado pelo polinômio CRC-8 0x87, equivalente a x\textsuperscript{8} + x\textsuperscript{7} + x\textsuperscript{2} + x + 1, com registrador inicial 0x00, sem reflexão e sem XOR final. O cálculo inclui os 19 bytes de TYPE, SEQ, LEN e DATA. FLAG e o próprio FCS não entram no cálculo.
+
+\par\noindent\begin{minipage}{\linewidth}
+\begin{lstlisting}
+uint8_t crc8(const uint8_t *dados, size_t n) {
+  uint8_t crc = 0;
+  for (size_t i = 0; i < n; ++i) {
+    crc ^= dados[i];
+    for (uint8_t b = 0; b < 8; ++b)
+      crc = (crc & 0x80) ? (uint8_t)((crc << 1) ^ 0x87)
+                        : (uint8_t)(crc << 1);
+  }
+  return crc;
+}
+\end{lstlisting}
+\end{minipage}\par
+\subsubsection*{Exemplo: mensagem ASCII TCD}
+TYPE=00, SEQ=00, LEN=03. Os bytes úteis são 54 43 44; completam-se os 16 bytes de DATA com 13 zeros. O registrador é atualizado a cada byte.
+
+\begin{table}[H]\centering\small\caption{Estados intermediários do CRC-8}\label{tab:9}
+\rowcolors{2}{tcdlight}{white}\begin{tabularx}{\linewidth}{>{\hsize=0.7423\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=1.2577\hsize\linewidth=\hsize\raggedright\arraybackslash}X}
+\rowcolor{tcdnavy} \textcolor{white}{\textbf{Entrada (hexadecimal)}} & \textcolor{white}{\textbf{CRC após cada byte (hexadecimal)}} \\
+00 00 03 54 43 44 & 00 00 0E 83 8E AA \\
+13 bytes 00 & ED 0C 38 4D C5 9C 11 5A 83 FA 4A 5E 16 \\
+\bottomrule\end{tabularx}\end{table}
+\textbf{FCS calculado: 0x16.} Se o byte 0x54 for alterado para 0x55 sem recalcular o FCS, o receptor calcula 0x22 e rejeita o quadro. A ausência de ACK aciona a retransmissão pelo ARQ.
+
+\par\noindent\begin{minipage}{\linewidth}
+\begin{lstlisting}
+7E 00 00 03 54 43 44 00 00 00 00
+00 00 00 00 00 00 00 00 00 16
+\end{lstlisting}
+\end{minipage}\par
+O CRC detecta corrupção, mas não corrige o dado diretamente nem garante detecção de todos os padrões de erro possíveis. A recuperação depende da retransmissão.
+
+\setcounter{subsection}{2}\subsection{Codificação 4B6B e ARQ}
+Cada byte lógico é dividido em dois nibbles. Cada nibble de quatro bits é mapeado em um símbolo de seis bits, transportado em um caractere UART de oito bits. Símbolos inválidos são rejeitados antes da verificação do CRC.
+
+\begin{table}[H]\centering\small\caption{Tabela de codificação 4B6B}\label{tab:10}
+\rowcolors{2}{tcdlight}{white}\begin{tabularx}{\linewidth}{>{\hsize=1.5773\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=0.9278\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=0.9278\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=0.9278\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=0.9278\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=0.9278\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=0.9278\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=0.9278\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=0.9278\hsize\linewidth=\hsize\raggedright\arraybackslash}X}
+\rowcolor{tcdnavy} \textcolor{white}{\textbf{Nibble}} & \textcolor{white}{\textbf{0}} & \textcolor{white}{\textbf{1}} & \textcolor{white}{\textbf{2}} & \textcolor{white}{\textbf{3}} & \textcolor{white}{\textbf{4}} & \textcolor{white}{\textbf{5}} & \textcolor{white}{\textbf{6}} & \textcolor{white}{\textbf{7}} \\
+Símbolo & 0D & 0E & 13 & 15 & 16 & 19 & 1A & 1C \\
+Nibble & 8 & 9 & A & B & C & D & E & F \\
+Símbolo & 23 & 25 & 26 & 29 & 2A & 2C & 32 & 34 \\
+\bottomrule\end{tabularx}\end{table}
+O preâmbulo de 32 bytes e o quadro de 21 bytes resultam em (32 + 21) \ensuremath{\times} 2 = 106 caracteres UART. Em 8N1, cada caractere ocupa 10 bits, totalizando 1.060 bits por transmissão. A 1200 baud, a serialização teórica é de aproximadamente 0,883 s, sem considerar ACKs, pausas, processamento e reenvios.
+
+\subsubsection*{Stop-and-Wait ARQ: sequência alternada}
+\begin{table}[H]\centering\small\caption{Sequência de transmissão e confirmação}\label{tab:11}
+\rowcolors{2}{tcdlight}{white}\begin{tabularx}{\linewidth}{>{\hsize=0.9979\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=1.0021\hsize\linewidth=\hsize\raggedright\arraybackslash}X}
+\rowcolor{tcdnavy} \textcolor{white}{\textbf{Emissor}} & \textcolor{white}{\textbf{Receptor}} \\
+Envia DATA seq=0 e aguarda. & Valida CRC, aceita DATA e envia ACK seq=0. \\
+ACK perdido: após timeout, reenvia DATA seq=0. & Identifica duplicata, não concatena e reenvia ACK. \\
+Recebe ACK válido, alterna sequência. & Espera próximo quadro novo. \\
+Envia DATA seq=1 ou END com a sequência aplicável. & Valida, confirma; END delimita a sessão. \\
+\bottomrule\end{tabularx}\end{table}
+O receptor confirma novamente duplicatas sem acrescentar os bytes uma segunda vez. Após END aceito, um END repetido não entrega uma nova mensagem. O firmware coloca o sinal TX em LOW ao retornar à recepção; isso não significa necessariamente desligar a alimentação do módulo. O limite de tentativas é indefinido, o que exige intervenção caso a comunicação não se restabeleça.
+

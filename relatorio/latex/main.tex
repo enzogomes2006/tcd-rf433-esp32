@@ -1,0 +1,83 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,left=25mm,right=25mm,top=26mm,bottom=25mm,headheight=16pt]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[table]{xcolor}
+\usepackage{graphicx,float,caption,booktabs,tabularx,array}
+\usepackage{enumitem,setspace,fancyhdr,titlesec,listings,pdfpages}
+\usepackage[unicode,colorlinks=true,linkcolor=tcdnavy,urlcolor=tcdteal,bookmarksnumbered=true]{hyperref}
+\definecolor{tcdnavy}{HTML}{17374B}
+\definecolor{tcdteal}{HTML}{276376}
+\definecolor{tcdgray}{HTML}{53616A}
+\definecolor{tcdlight}{HTML}{EDF3F5}
+\pdfstringdefDisableCommands{\def\times{×}}
+\hypersetup{pdftitle={Transmissão confiável de textos e imagens via RF 433 MHz},pdfauthor={Enzo Aurélio; Felipe Enzo; Enzo Cristian}}
+\setlength{\parindent}{1.25cm}
+\setlength{\parskip}{3pt}
+\setstretch{1.13}
+\setlength{\emergencystretch}{2em}
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{2}
+\setlist[enumerate]{leftmargin=*,topsep=4pt,itemsep=2pt,parsep=0pt}
+\titleformat{\section}{\sffamily\Large\bfseries\color{tcdnavy}}{\thesection}{0.65em}{}[\vspace{2pt}\color{tcdteal}\titlerule]
+\titleformat{\subsection}{\sffamily\large\bfseries\color{tcdnavy}}{\thesubsection}{0.6em}{}
+\titleformat{\subsubsection}{\sffamily\normalsize\bfseries\color{tcdnavy}}{}{0pt}{}
+\titlespacing*{\section}{0pt}{8pt}{13pt}
+\titlespacing*{\subsection}{0pt}{12pt}{6pt}
+\titlespacing*{\subsubsection}{0pt}{8pt}{4pt}
+\captionsetup{font={small,sf},labelfont={bf,color=tcdnavy},textfont={color=tcdgray},justification=centering,skip=5pt}
+\captionsetup[table]{position=top}
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.23}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\sffamily\color{tcdgray} IFMT\enspace\textperiodcentered\enspace TCD\enspace\textperiodcentered\enspace RF 433 MHz}
+\fancyhead[R]{\small\sffamily\color{tcdgray} Relatório técnico}
+\fancyfoot[L]{\footnotesize\sffamily\color{tcdgray} Firmware V7 | Resultados de 24/11/2026}
+\fancyfoot[R]{\small\sffamily\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\lstset{basicstyle=\ttfamily\small,backgroundcolor=\color{tcdlight},frame=single,rulecolor=\color{tcdlight},breaklines=true,columns=fullflexible,keepspaces=true,showstringspaces=false,aboveskip=8pt,belowskip=8pt,xleftmargin=4pt,xrightmargin=4pt}
+\lstset{literate={á}{{\'{a}}}1 {à}{{\`{a}}}1 {ã}{{\~{a}}}1 {â}{{\^{a}}}1 {é}{{\'{e}}}1 {ê}{{\^{e}}}1 {í}{{\'{i}}}1 {ó}{{\'{o}}}1 {ô}{{\^{o}}}1 {õ}{{\~{o}}}1 {ú}{{\'{u}}}1 {ç}{{\c{c}}}1}
+\newcommand{\instituicao}{Instituto Federal de Mato Grosso}
+\newcommand{\campus}{Campus Cuiabá -- Octayde Jorge da Silva}
+\newcommand{\disciplina}{Transmissão e Comunicação de Dados}
+\newcommand{\autores}{Enzo Aurélio \textperiodcentered\ Felipe Enzo \textperiodcentered\ Enzo Cristian}
+\newcommand{\docente}{Ruy Barbosa}
+\begin{document}
+\begin{titlepage}
+\centering\sffamily
+{\large\bfseries\MakeUppercase{\instituicao}\par}
+\vspace{3pt}{\large\campus\par}
+\vspace{1.8cm}{\large\disciplina\par}
+\vfill
+{\color{tcdteal}\rule{0.85\linewidth}{1pt}\par}\vspace{0.5cm}
+{\huge\bfseries\color{tcdnavy} Transmissão confiável de textos e imagens via rádio de 433 MHz entre dois ESP32\par}
+\vspace{0.5cm}{\large CRC-8 \textperiodcentered\ Codificação 4B6B \textperiodcentered\ Stop-and-Wait ARQ\par}
+\vspace{0.5cm}{\color{tcdteal}\rule{0.85\linewidth}{1pt}\par}
+\vspace{0.7cm}{\large Relatório técnico do projeto final\par}
+\vfill
+{\large\autores\par}\vspace{0.4cm}{\large Docente: \docente\par}
+\vfill
+{\large Cuiabá -- MT\par 2026\par}
+\end{titlepage}
+
+\input{secoes/00-elementos-iniciais}
+\input{secoes/01-introduo-e-objetivos}
+\input{secoes/02-arquitetura-do-sistema}
+\input{secoes/03-materiais-e-montagem}
+\input{secoes/04-ambiente-de-desenvolvimento}
+\input{secoes/05-protocolo-de-comunicao}
+\input{secoes/06-transmisso-e-reconstruo-de-imagens}
+\input{secoes/07-metodologia-e-resultados-experimentais}
+\input{secoes/08-anlise-integrada-dos-resultados}
+\input{secoes/09-concluso}
+\input{secoes/10-anexo-a}
+\input{secoes/11-anexo-b}
+\clearpage
+\includepdf[pages=-,pagecommand={},addtotoc={1,subsection,2,Documento de ensaios (17 páginas),anexo:ensaios}]{anexos/Relatorio_Ensaios_V7.pdf}
+\end{document}

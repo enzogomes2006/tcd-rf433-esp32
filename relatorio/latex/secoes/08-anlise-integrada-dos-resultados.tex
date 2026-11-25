@@ -1,0 +1,42 @@
+\clearpage\section{Análise integrada dos resultados}
+\begin{table}[H]\centering\small\caption{Resultados consolidados dos ensaios}\label{tab:20}
+\rowcolors{2}{tcdlight}{white}\begin{tabularx}{\linewidth}{>{\hsize=0.6907\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=0.9691\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=0.9691\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=0.7732\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=1.5979\hsize\linewidth=\hsize\raggedright\arraybackslash}X}
+\rowcolor{tcdnavy} \textcolor{white}{\textbf{Teste}} & \textcolor{white}{\textbf{Distância (m)}} & \textcolor{white}{\textbf{Tempo (s)}} & \textcolor{white}{\textbf{Reenvios}} & \textcolor{white}{\textbf{Resultado}} \\
+T01 & NR & NR & NR & Autoteste OK \\
+T02 & NR & NR & NR & END confirmado \\
+T03 & NR & NR & 2 & 1 mensagem \\
+T04 & NR & NR & 18 & 1 mensagem \\
+T05 & NR & NR & 1 & 1 mensagem \\
+T06 & NR & NR & 6 & 1 contabilizada; parcial \\
+T07 & NR & NR & 5 & 1 mensagem \\
+T08 & NR & NR & 8 & 1 mensagem; residual \\
+T09 & NR & NR & 113 & 10 recebidas; residual \\
+T10 & 1,12 & 120–180* & 19 & 10/\allowbreak 10 END \\
+T11 sem & 1,12 & 200 & 14 & 10/\allowbreak 10 END \\
+T11 com & 1,12 & 176 & 13 & 10/\allowbreak 10 END \\
+T12 & 1,12 & 112 & NR & 256 B; íntegra \\
+T13 & 1,12 \ensuremath{\to} 0,60 & 720 & NR & 1024 B; íntegra \\
+T14 & 1,15 & 120–180* & NR & 256 B; íntegra \\
+\bottomrule\end{tabularx}\end{table}
+{\small * Tempo estimado, não cronometrado. Fonte: relatório de ensaios consolidado, p. 16. T08/T09: contadores residuais. T14: tempo da sessão bem-sucedida.\par}
+\subsubsection*{Confiabilidade e custo de comunicação}
+A recuperação de erros é evidenciada pelos descartes CRC e reenvios de T05/T06, pela repetição sem duplicação em T07/T08 e pelos lotes completos T09–T11. T12–T14 demonstram integridade dos pixels recebidos. Entretanto, o preâmbulo, a codificação, as cópias de ACK, as pausas e as retransmissões reduzem a vazão útil.
+
+A vazão líquida observada de pixels é de aproximadamente 2,29 bytes/s em T12 (256/112) e 1,42 bytes/s em T13 (1024/720); em T14, entre 1,42 e 2,13 bytes/s na tentativa bem-sucedida estimada. São valores descritivos, não uma comparação controlada de desempenho, pois resolução, distância e condições variaram.
+
+\setcounter{subsection}{0}\subsection{Limitações e oportunidades de melhoria}
+Os testes demonstram a operação do sistema nas condições realizadas, mas não permitem estabelecer uma taxa geral de confiabilidade. Em T06, falta confirmar duas mensagens íntegras conforme o roteiro. Os registros T08/T09 incluem atividade residual, e T10/T11 não mostram todos os textos integrais. As capturas T01–T09 são provenientes do relatório anterior e não foram reinspecionadas na consolidação mais recente.
+
+Em T12 e T13, os PNGs originais não foram identificados inequivocamente no acervo da consolidação, mas os PBM e hashes foram confirmados no relatório de ensaios. Em T14, PBM e PNG foram comparados. Não foram disponibilizados os bytes originais dos PBM nesta revisão do relatório principal, de modo que a confirmação criptográfica aqui é reportada com base no documento de ensaios e não recalculada independentemente.
+
+\subsubsection*{Melhorias propostas}
+\begin{enumerate}
+\item Repetir T06 conforme o protocolo, registrando os dois textos completos, os três erros injetados e os contadores em ambos os nós.
+\item Registrar distância, orientação, ambiente e duração em múltiplas repetições de cada condição para avaliar variabilidade do enlace.
+\item Medir quantitativamente a alimentação e o nível DATA do receptor; identificar os modelos exatos dos módulos e documentar a adaptação elétrica quando necessária.
+\item Avaliar o efeito de preâmbulo, intervalo de ACK e taxa UART em versão experimental separada; preservar a V7 como referência e repetir os testes após alterações.
+\item Implementar, como evolução, limite de tentativas ou cancelamento de sessão, sem comprometer o controle de sequência.
+\item Manter os arquivos de origem e reconstruídos, logs completos e hashes associados a cada sessão, facilitando reprodução e conferência.
+\end{enumerate}
+Estas melhorias são propostas, não alterações já implementadas. A robustez física não foi caracterizada em ambiente controlado; não se conclui imunidade a ruído ou superioridade de antenas ou obstáculos.
+
