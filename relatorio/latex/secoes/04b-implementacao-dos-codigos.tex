@@ -1,0 +1,45 @@
+\section{Implementação e análise dos códigos-fonte}
+\label{sec:implementacao}
+Os dois firmwares V7 originais (906 linhas cada) e os dois scripts Python estão disponíveis no repositório do projeto. Esta seção descreve os blocos que integram o firmware Arduino/C++ e os programas Python, sem reproduzir integralmente os códigos nem alterar a versão validada nos ensaios.
+
+\subsection{Firmwares dos circuitos A e B}
+Os dois sketches compartilham a mesma estrutura de comunicação. A constante de compilação \texttt{NO\_EH\_B} vale 0 no circuito A e 1 no circuito B, habilitando neste último as rotinas do OLED. Ambos utilizam GPIO26 para TX, GPIO27 para RX, UART RF a 1.200 baud e USB a 115.200 baud. Em \texttt{setup()}, o firmware inicializa a serial, o rádio e, no B, procura o endereço I\textsuperscript{2}C 0x3C ou 0x3D do display. Em \texttt{loop()}, lê comandos da USB e verifica se há quadros RF recebidos.
+
+\begin{table}[H]\centering\small\caption{Principais funções dos firmwares V7}\label{tab:funcoes-firmware}
+\rowcolors{2}{tcdlight}{white}\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.43\linewidth}X}
+\rowcolor{tcdtablehead}\textcolor{black}{\textbf{Funções}} & \textcolor{black}{\textbf{Responsabilidade}}\\
+\texttt{setup(), loop(), lerUSB()} & Inicialização, leitura de comandos e atendimento do rádio.\\
+\texttt{montarFrame(), crc8()} & Montagem do quadro de 21 bytes e cálculo do FCS.\\
+\texttt{escrever4b6b(), dec4b6b()} & Conversão entre nibbles de 4 bits e símbolos de 6 bits.\\
+\texttt{transmitirFrame(), receberFrame()} & Envio, enquadramento, decodificação e verificação dos quadros.\\
+\texttt{enviarComARQ(), esperarACK()} & Retransmissão após timeout e validação da sequência do ACK.\\
+\texttt{processarFrameRecebido()} & Controle de duplicatas, remontagem de texto/imagem e tratamento do END.\\
+\texttt{iniciarEnvioImagem(), enviarBlocoImagem(), encerrarEnvioImagem()} & Transferência de cabeçalho, blocos de pixels e encerramento.\\
+\texttt{mostrarImagemOLED(), exportarImagemParaUSB()} & Exibição no B e exportação dos dados validados ao computador.\\
+\texttt{testeLocal(), imprimirStatus()} & Autoteste e registro dos contadores experimentais.\\
+\bottomrule\end{tabularx}\end{table}
+
+O trecho abaixo, extraído de \texttt{loop()} (linhas 895--906 dos sketches consultados), mostra o atendimento dos quadros válidos e o registro dos erros de recepção. A lógica de retransmissão fica em \texttt{enviarComARQ()}, que repete o quadro até obter ACK válido; a sequência só avança após confirmação. O tratamento de DATA e END duplicados impede a entrega repetida da mesma carga útil.
+\par\noindent\begin{minipage}{\linewidth}
+\begin{lstlisting}[language=C++,caption={Trecho original do laço principal do firmware V7},label={lst:loop-v7}]
+void loop() {
+  lerUSB();
+  uint8_t f[TAM_FRAME] = {0};
+  uint8_t r = receberFrame(f, 150);
+  if (r == FRAME_OK) {
+    ++stats.framesValidos;
+    processarFrameRecebido(f);
+  } else if (r != SEM_SINAL) {
+    registrarErro(r);
+  }
+  delay(1);
+}
+\end{lstlisting}
+\end{minipage}\par
+
+\subsection{Programas Python de envio e recepção}
+O script de envio utiliza Pillow [12] para corrigir orientação, redimensionar e converter a imagem para 1 bit por pixel. Calcula CRC32 e SHA-256 sobre os bytes dos pixels, salva o PBM de referência e utiliza PySerial [11] para transmitir os comandos \texttt{/imgstart}, \texttt{/imghex} e \texttt{/imgend}. Aguarda as respostas \texttt{@PC\_READY}, \texttt{@PC\_ACK} e \texttt{@PC\_DONE} antes de avançar. O bloco hexadecimal representa 16 bytes de pixels; o firmware realiza a transmissão RF e o controle ARQ.
+
+No destino, o script de recepção utiliza a classe \texttt{Receptor} e sua função \texttt{processar()} para interpretar \texttt{@IMG\_BEGIN}, \texttt{@IMG\_DATA} e \texttt{@IMG\_END}. Acumula os bytes, confere o tamanho e o CRC32 antes de gravar o PBM e, quando Pillow está instalado, o PNG. O SHA-256 é impresso para comparação com o emissor; não é transmitido como campo do quadro RF. Assim, CRC-8 verifica cada quadro, CRC32 verifica a imagem completa e SHA-256 permite a conferência adicional dos pixels.
+
+\noindent\textbf{Acesso aos códigos originais:} \href{https://github.com/enzogomes2006/tcd-rf433-esp32/blob/35d4604424820aa82c8c3423637b6a23ae0019b2/firmware/CircuitoA/CircuitoA.ino}{Circuito A} \textperiodcentered\ \href{https://github.com/enzogomes2006/tcd-rf433-esp32/blob/35d4604424820aa82c8c3423637b6a23ae0019b2/firmware/CircuitoB/CircuitoB.ino}{Circuito B} \textperiodcentered\ \href{https://github.com/enzogomes2006/tcd-rf433-esp32/blob/35d4604424820aa82c8c3423637b6a23ae0019b2/computador/enviar_imagem_TCD.py}{Python de envio} \textperiodcentered\ \href{https://github.com/enzogomes2006/tcd-rf433-esp32/blob/35d4604424820aa82c8c3423637b6a23ae0019b2/computador/receber_imagem_TCD.py}{Python de recepção}. A revisão de referência indicada no repositório é 35d4604; os arquivos foram consultados em 25/11/2026.

@@ -2,7 +2,7 @@
 
 IFMT · Campus Cuiabá – Octayde Jorge da Silva  
 Transmissão e Comunicação de Dados · Professor Ruy Barbosa  
-Equipe: Enzo Aurélio, Felipe Enzo e Enzo Cristian
+Equipe: Enzo Aurélio de Alvarenga Gomes, Enzo Christyan Mubarak Oliveira Arruda e Felipe Enzo Fukase
 
 [Voltar ao README principal](../README.md)
 
@@ -10,9 +10,9 @@ Equipe: Enzo Aurélio, Felipe Enzo e Enzo Cristian
 
 | Documento | Formato | Conteúdo |
 | --- | --- | --- |
-| [**Relatório técnico completo**](Relatorio_TCD_Final.pdf) | PDF · 52 páginas | Montagem, protocolo, esquemáticos atualizados e resultados |
+| [**Relatório técnico completo**](Relatorio_TCD_Final.pdf) | PDF · 43 páginas | Revisão acadêmica: montagem, protocolo, esquemáticos, gráficos e resultados |
 | [Relatório de ensaios V7](Relatorio_Ensaios_V7.pdf) | PDF · 17 páginas | Procedimentos, evidências e resultados consolidados de 24/11/2026 |
-| [Projeto LaTeX](latex/) | Fontes editáveis | `main.tex`, seções, figuras e anexo; compilador pdfLaTeX |
+| [Projeto LaTeX](latex/) | Fontes editáveis | `main.tex`, seções, figuras e documento complementar; compilador pdfLaTeX |
 
 **[Abrir relatório técnico em PDF](Relatorio_TCD_Final.pdf)**
 

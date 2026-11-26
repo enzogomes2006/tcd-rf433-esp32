@@ -3,7 +3,7 @@ Foram definidos 14 ensaios no protocolo de 23/11/2026. Nos T01–T11, o Monitor 
 
 \begin{table}[H]\centering\small\caption{ID / Ensaio / Resultado / classificação}\label{tab:14}
 \rowcolors{2}{tcdlight}{white}\begin{tabularx}{\linewidth}{>{\hsize=0.3093\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=1.0825\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=1.6082\hsize\linewidth=\hsize\raggedright\arraybackslash}X}
-\rowcolor{tcdnavy} \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Ensaio}} & \textcolor{white}{\textbf{Resultado /\allowbreak  classificação}} \\
+\rowcolor{tcdtablehead} \textcolor{black}{\textbf{ID}} & \textcolor{black}{\textbf{Ensaio}} & \textcolor{black}{\textbf{Resultado /\allowbreak  classificação}} \\
 T01 & Autoteste CRC-8 e 4B6B & Três verificações OK; relatado. \\
 T02 & Texto A \ensuremath{\to} B & Entrega e END; relatado. \\
 T03 & Texto B \ensuremath{\to} A & Entrega; 2 reenvios; relatado. \\
@@ -51,34 +51,28 @@ Armar /perderend em B, enviar texto de A e observar confirmação de END. O END 
 Executar /lote 10 em A e consultar /status nos dois nós. B contabilizou 10 mensagens completas, 137 quadros válidos e 107 duplicatas; 30 quadros novos são coerentes com 20 DATA e 10 END. A registrou 145 TX, 32 ACKs, 113 reenvios e 11 mensagens contabilizadas, evidenciando atividade residual. Não calcular taxa de reenvio exclusiva do lote.
 
 {\small Distância e duração dos T06–T09: NR. T06 possui evidência parcial; T07–T09 têm sucesso relatado, com ressalva de contadores no T08/T09.\par}
-\clearpage
 \setcounter{subsection}{2}\subsection{T10 — comunicação acima de 1 metro}
 O procedimento previa posicionar as antenas a 1,10 m, zerar contadores e executar /lote 10 em A. A distância real registrada foi 1,12 m. A confirmou os dez END e B contabilizou dez mensagens. O tempo foi estimado entre 120 e 180 s, não cronometrado.
 
 \begin{table}[H]\centering\small\caption{Contadores do ensaio T10}\label{tab:15}
 \rowcolors{2}{tcdlight}{white}\begin{tabularx}{\linewidth}{>{\hsize=1.6392\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=0.6804\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=0.6804\hsize\linewidth=\hsize\raggedright\arraybackslash}X}
-\rowcolor{tcdnavy} \textcolor{white}{\textbf{Contador}} & \textcolor{white}{\textbf{A (TX)}} & \textcolor{white}{\textbf{B (RX)}} \\
+\rowcolor{tcdtablehead} \textcolor{black}{\textbf{Contador}} & \textcolor{black}{\textbf{A (TX)}} & \textcolor{black}{\textbf{B (RX)}} \\
 TX /\allowbreak  RX válidos & 49 /\allowbreak  30 & 98 /\allowbreak  49 \\
 ACK enviados /\allowbreak  recebidos & 0 /\allowbreak  30 & 98 /\allowbreak  0 \\
 Retransmissões /\allowbreak  duplicatas & 19 /\allowbreak  0 & 0 /\allowbreak  19 \\
 CRC errado /\allowbreak  4B6B inválido & 0 /\allowbreak  28 & 0 /\allowbreak  0 \\
 Mensagens enviadas /\allowbreak  recebidas & 10 /\allowbreak  0 & 0 /\allowbreak  10 \\
 \bottomrule\end{tabularx}\end{table}
-\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=145pt,keepaspectratio]{figuras/new_6_1.jpg}\caption{Bancada de T10, com circuitos separados e trena. Fonte: relatório de ensaios, fig. 1.}\label{fig:new_6_1}\end{figure}
-\begin{figure}[H]\centering
-\begin{minipage}[t]{0.48\linewidth}\centering\includegraphics[width=\linewidth,height=135pt,keepaspectratio]{figuras/new_6_2.jpg}\caption{Detalhe da medição.}\label{fig:new_6_2}\end{minipage}
-\hfill
-\begin{minipage}[t]{0.48\linewidth}\centering\includegraphics[width=\linewidth,height=135pt,keepaspectratio]{figuras/new_6_3.jpg}\caption{Montagem do receptor B.}\label{fig:new_6_3}\end{minipage}
-\end{figure}
-O lote contém 30 quadros novos (20 DATA + 10 END). Os 49 TX de A correspondem a 30 quadros novos e 19 reenvios; B registrou 49 válidos e 19 duplicatas, além de 98 ACKs enviados (duas cópias por quadro). \textbf{Resultado: sucesso funcional} a 1,12 m; os dez textos integrais não estão visíveis nos registros. Evidências seriais no Anexo B.
 
-\clearpage
+
+O lote contém 30 quadros novos (20 DATA + 10 END). Os 49 TX de A correspondem a 30 quadros novos e 19 reenvios; B registrou 49 válidos e 19 duplicatas, além de 98 ACKs enviados (duas cópias por quadro). \textbf{Resultado: sucesso funcional} a 1,12 m; os dez textos integrais não estão visíveis nos registros. Evidências seriais no Anexo A, com o documento original referenciado no Anexo B.
+
 \setcounter{subsection}{3}\subsection{T11 — comunicação com obstáculo físico}
 Comparar o enlace na mesma distância informada de 1,12 m, com e sem obstáculo passivo. O roteiro previa condição livre primeiro; na execução, a mochila foi interposta primeiro e a condição livre foi repetida depois. Em ambas, A executou /lote 10 e foram coletados os contadores.
 
 \begin{table}[H]\centering\small\caption{Comparação das condições do ensaio T11}\label{tab:16}
 \rowcolors{2}{tcdlight}{white}\begin{tabularx}{\linewidth}{>{\hsize=1.5155\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=0.7423\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=0.7423\hsize\linewidth=\hsize\raggedright\arraybackslash}X}
-\rowcolor{tcdnavy} \textcolor{white}{\textbf{Indicador}} & \textcolor{white}{\textbf{Sem mochila}} & \textcolor{white}{\textbf{Com mochila}} \\
+\rowcolor{tcdtablehead} \textcolor{black}{\textbf{Indicador}} & \textcolor{black}{\textbf{Sem mochila}} & \textcolor{black}{\textbf{Com mochila}} \\
 TX A /\allowbreak  RX válidos B & 44 /\allowbreak  44 & 43 /\allowbreak  43 \\
 ACK recebidos A /\allowbreak  enviados B & 30 /\allowbreak  88 & 30 /\allowbreak  86 \\
 Reenvios A /\allowbreak  duplicatas B & 14 /\allowbreak  14 & 13 /\allowbreak  13 \\
@@ -87,14 +81,9 @@ CRC errado A /\allowbreak  B & 0 /\allowbreak  0 & 0 /\allowbreak  0 \\
 Mensagens recebidas /\allowbreak  END & 10 /\allowbreak  10 & 10 /\allowbreak  10 \\
 Tempo cronometrado (s) & 200 & 176 \\
 \bottomrule\end{tabularx}\end{table}
-\begin{figure}[H]\centering
-\begin{minipage}[t]{0.48\linewidth}\centering\includegraphics[width=\linewidth,height=150pt,keepaspectratio]{figuras/new_8_1.jpg}\caption{Condição livre (foto de referência do T10).}\label{fig:new_8_1}\end{minipage}
-\hfill
-\begin{minipage}[t]{0.48\linewidth}\centering\includegraphics[width=\linewidth,height=150pt,keepaspectratio]{figuras/new_8_2.jpg}\caption{Mochila entre os circuitos no T11.}\label{fig:new_8_2}\end{minipage}
-\end{figure}
-A conclusão dos dois lotes confirma funcionamento nas duas condições observadas. A diferença de um reenvio e 24 segundos não demonstra que o obstáculo melhorou o enlace: as condições não foram repetidas em uma série controlada. A mochila é um obstáculo passivo, não uma fonte de interferência RF controlada. \textbf{Resultado: sucesso funcional}; os dez textos integrais de cada condição não constam das capturas. Evidências seriais no Anexo B.
 
-\clearpage
+A conclusão dos dois lotes confirma funcionamento nas duas condições observadas. A diferença de um reenvio e 24 segundos não demonstra que o obstáculo melhorou o enlace: as condições não foram repetidas em uma série controlada. A mochila é um obstáculo passivo, não uma fonte de interferência RF controlada. \textbf{Resultado: sucesso funcional}; os dez textos integrais de cada condição não constam das capturas. Evidências seriais no Anexo A, com o documento original referenciado no Anexo B.
+
 \setcounter{subsection}{4}\subsection{T12 — imagem 64\ensuremath{\times}32 de A para B}
 Abrir primeiro o receptor Python B na COM8; iniciar em A, COM20, o envio da imagem4.jpeg em 64\ensuremath{\times}32. O teste foi realizado a 1,12 m, com 112 s de duração. A confirmou END na segunda tentativa e B reconstruiu a imagem.
 
@@ -104,9 +93,9 @@ Abrir primeiro o receptor Python B na COM8; iniciar em A, COM20, o envio da imag
 [A] python enviar_imagem_TCD.py COM20 "imagem4.jpeg" --size 64x32
 \end{lstlisting}
 \end{minipage}\par
-\begin{table}[H]\centering\small\caption{Resultados do ensaio de imagem}\label{tab:17}
+\begin{table}[H]\centering\small\caption{Resultados da transmissão de imagem T12}\label{tab:17}
 \rowcolors{2}{tcdlight}{white}\begin{tabularx}{\linewidth}{>{\hsize=0.6186\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=1.3814\hsize\linewidth=\hsize\raggedright\arraybackslash}X}
-\rowcolor{tcdnavy} \textcolor{white}{\textbf{Parâmetro}} & \textcolor{white}{\textbf{Resultado registrado}} \\
+\rowcolor{tcdtablehead} \textcolor{black}{\textbf{Parâmetro}} & \textcolor{black}{\textbf{Resultado registrado}} \\
 Distância /\allowbreak  duração & 1,12 m /\allowbreak  112 s \\
 Bytes recebidos /\allowbreak  esperados & 256 /\allowbreak  256 \\
 CRC32 (A/\allowbreak B e PBM) & DAF56504 \\
@@ -114,14 +103,9 @@ SHA-256 dos pixels & \texttt{80c42a27\allowbreak 9aaed29d\allowbreak aa665e3a\al
 Arquivo & PBM verificado; PNG registrado no terminal. \\
 END & Confirmado na segunda tentativa. \\
 \bottomrule\end{tabularx}\end{table}
-\begin{figure}[H]\centering
-\begin{minipage}[t]{0.48\linewidth}\centering\includegraphics[width=\linewidth,height=145pt,keepaspectratio]{figuras/new_10_1.png}\caption{PBM reconstruído, ampliado.}\label{fig:new_10_1}\end{minipage}
-\hfill
-\begin{minipage}[t]{0.48\linewidth}\centering\includegraphics[width=\linewidth,height=145pt,keepaspectratio]{figuras/new_10_2.jpg}\caption{Imagem exibida no OLED de B.}\label{fig:new_10_2}\end{minipage}
-\end{figure}
-Após a validação e o salvamento, o receptor registrou erro ClearCommError. Como o erro ocorreu depois da gravação, não invalida o PBM verificado. O hash refere-se aos bytes de pixels, sem o cabeçalho PBM. Não foi registrado o total de retransmissões. \textbf{Resultado: integridade confirmada.} Os terminais e a fotografia estão preservados no Anexo B.
 
-\clearpage
+Após a validação e o salvamento, o receptor registrou erro ClearCommError. Como o erro ocorreu depois da gravação, não invalida o PBM verificado. O hash refere-se aos bytes de pixels, sem o cabeçalho PBM. Não foi registrado o total de retransmissões. \textbf{Resultado: integridade confirmada.} Os terminais e a fotografia estão reunidos no Anexo A e preservados no documento complementar indicado no Anexo B.
+
 \setcounter{subsection}{5}\subsection{T13 — imagem 128\ensuremath{\times}64 de A para B}
 Repetir a transferência com a resolução máxima de 128\ensuremath{\times}64. A execução empregou COM20 em A e COM8 em B. Ocorreram muitos erros e a distância foi reduzida de 1,12 m para 0,60 m durante a sessão. O tempo total registrado foi 720 s; END foi confirmado na primeira tentativa.
 
@@ -131,9 +115,9 @@ Repetir a transferência com a resolução máxima de 128\ensuremath{\times}64. 
 [A] python enviar_imagem_TCD.py COM20 "imagem4.jpeg" --size 128x64
 \end{lstlisting}
 \end{minipage}\par
-\begin{table}[H]\centering\small\caption{Resultados do ensaio de imagem}\label{tab:18}
+\begin{table}[H]\centering\small\caption{Resultados da transmissão de imagem T13}\label{tab:18}
 \rowcolors{2}{tcdlight}{white}\begin{tabularx}{\linewidth}{>{\hsize=0.6186\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=1.3814\hsize\linewidth=\hsize\raggedright\arraybackslash}X}
-\rowcolor{tcdnavy} \textcolor{white}{\textbf{Parâmetro}} & \textcolor{white}{\textbf{Resultado registrado}} \\
+\rowcolor{tcdtablehead} \textcolor{black}{\textbf{Parâmetro}} & \textcolor{black}{\textbf{Resultado registrado}} \\
 Distância /\allowbreak  duração & 1,12 m \ensuremath{\to} 0,60 m /\allowbreak  720 s \\
 Bytes recebidos /\allowbreak  esperados & 1024 /\allowbreak  1024 \\
 CRC32 (A/\allowbreak B e PBM) & 2749D731 \\
@@ -141,14 +125,9 @@ SHA-256 dos pixels & \texttt{4a9fee35\allowbreak ec9e4c6a\allowbreak 73b0491b\al
 Arquivo & PBM verificado; PNG registrado no terminal. \\
 END & Confirmado na primeira tentativa. \\
 \bottomrule\end{tabularx}\end{table}
-\begin{figure}[H]\centering
-\begin{minipage}[t]{0.48\linewidth}\centering\includegraphics[width=\linewidth,height=145pt,keepaspectratio]{figuras/new_12_1.png}\caption{PBM 128\ensuremath{\times}64 reconstruído.}\label{fig:new_12_1}\end{minipage}
-\hfill
-\begin{minipage}[t]{0.48\linewidth}\centering\includegraphics[width=\linewidth,height=145pt,keepaspectratio]{figuras/new_12_2.jpg}\caption{Imagem ocupando o OLED de B.}\label{fig:new_12_2}\end{minipage}
-\end{figure}
-A transferência concluiu os 1024 bytes, com CRC32 e SHA-256 coincidentes nos registros e PBM. Não se pode afirmar que toda a imagem percorreu 1,12 m. O total de reenvios não foi registrado. \textbf{Resultado: integridade confirmada.} Os terminais constam do Anexo B.
 
-\clearpage
+A transferência concluiu os 1024 bytes, com CRC32 e SHA-256 coincidentes nos registros e PBM. Não se pode afirmar que toda a imagem percorreu 1,12 m. O total de reenvios não foi registrado. \textbf{Resultado: integridade confirmada.} Os terminais constam do Anexo A e do documento complementar indicado no Anexo B.
+
 \setcounter{subsection}{6}\subsection{T14 — imagem 64\ensuremath{\times}32 de B para A}
 Inverter os papéis: A recebeu pela COM20 e B enviou pela COM5, utilizando o comando py. A primeira tentativa foi interrompida na 22ª tentativa do cabeçalho; houve também problema de acesso à COM20. Após diagnóstico por texto e nova sessão, o cabeçalho foi confirmado na quarta tentativa e END na segunda.
 
@@ -158,9 +137,9 @@ Inverter os papéis: A recebeu pela COM20 e B enviou pela COM5, utilizando o com
 [B] py enviar_imagem_TCD.py COM5 "imagem4.jpeg" --size 64x32
 \end{lstlisting}
 \end{minipage}\par
-\begin{table}[H]\centering\small\caption{Resultados do ensaio de imagem}\label{tab:19}
+\begin{table}[H]\centering\small\caption{Resultados da transmissão de imagem T14}\label{tab:19}
 \rowcolors{2}{tcdlight}{white}\begin{tabularx}{\linewidth}{>{\hsize=0.6186\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=1.3814\hsize\linewidth=\hsize\raggedright\arraybackslash}X}
-\rowcolor{tcdnavy} \textcolor{white}{\textbf{Parâmetro}} & \textcolor{white}{\textbf{Resultado registrado}} \\
+\rowcolor{tcdtablehead} \textcolor{black}{\textbf{Parâmetro}} & \textcolor{black}{\textbf{Resultado registrado}} \\
 Distância /\allowbreak  duração & 1,15 m /\allowbreak  120–180 s (estimado). \\
 Bytes recebidos /\allowbreak  esperados & 256 /\allowbreak  256 \\
 CRC32 (A/\allowbreak B e PBM) & 607BACD6 \\
@@ -168,10 +147,6 @@ SHA-256 dos pixels & \texttt{44b987a6\allowbreak 5d851199\allowbreak 8c873caf\al
 Arquivos & PBM verificado; PNG original com os mesmos pixels. \\
 END & Confirmado na segunda tentativa. \\
 \bottomrule\end{tabularx}\end{table}
-\begin{figure}[H]\centering
-\begin{minipage}[t]{0.48\linewidth}\centering\includegraphics[width=\linewidth,height=145pt,keepaspectratio]{figuras/new_14_1.png}\caption{PBM reconstruído no computador A.}\label{fig:new_14_1}\end{minipage}
-\hfill
-\begin{minipage}[t]{0.48\linewidth}\centering\includegraphics[width=\linewidth,height=145pt,keepaspectratio]{figuras/new_14_2.jpg}\caption{Montagens e trena; distância informada de 1,15 m.}\label{fig:new_14_2}\end{minipage}
-\end{figure}
-O tempo estimado refere-se à tentativa bem-sucedida e não inclui o diagnóstico anterior. A não possui display, portanto a imagem foi reconstruída no computador A. O hash é diferente do T12, mas coincide entre envio e recepção do próprio T14; a causa da diferença entre as conversões não foi determinada. \textbf{Resultado: integridade confirmada.}
+
+O tempo estimado refere-se à tentativa bem-sucedida e não inclui o diagnóstico anterior. A não possui display, portanto a imagem foi reconstruída no computador A. O hash é diferente do T12, mas coincide entre envio e recepção do próprio T14; a causa da diferença entre as conversões não foi determinada. \textbf{Resultado: integridade confirmada.} As evidências estão reunidas no Anexo A.
 

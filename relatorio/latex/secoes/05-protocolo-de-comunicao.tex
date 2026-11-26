@@ -1,9 +1,9 @@
-\clearpage\section{Protocolo de comunicação}
+\section{Protocolo de comunicação}
 A UART Serial2 opera a 1200 baud, 8N1; a comunicação USB utiliza 115200 baud. A unidade lógica de transmissão possui 21 bytes, mesmo quando o campo DATA contém menos de 16 bytes úteis. Os bytes restantes são preenchidos com zero.
 
 \begin{table}[H]\centering\small\caption{Estrutura do quadro lógico}\label{tab:7}
 \rowcolors{2}{tcdlight}{white}\begin{tabularx}{\linewidth}{>{\hsize=0.7010\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=0.6186\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=0.4536\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=2.2268\hsize\linewidth=\hsize\raggedright\arraybackslash}X}
-\rowcolor{tcdnavy} \textcolor{white}{\textbf{Campo}} & \textcolor{white}{\textbf{Posição}} & \textcolor{white}{\textbf{Bytes}} & \textcolor{white}{\textbf{Função}} \\
+\rowcolor{tcdtablehead} \textcolor{black}{\textbf{Campo}} & \textcolor{black}{\textbf{Posição}} & \textcolor{black}{\textbf{Bytes}} & \textcolor{black}{\textbf{Função}} \\
 FLAG & 0 & 1 & 0x7E; início do quadro. \\
 TYPE & 1 & 1 & DATA=0; ACK=1; END=2. \\
 SEQ & 2 & 1 & Sequência alternada 0 ou 1. \\
@@ -16,7 +16,7 @@ DATA transporta a carga útil. ACK confirma a recepção de um quadro válido e 
 
 \begin{table}[H]\centering\small\caption{Parâmetros de referência do firmware V7}\label{tab:8}
 \rowcolors{2}{tcdlight}{white}\begin{tabularx}{\linewidth}{>{\hsize=1.0722\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=0.9278\hsize\linewidth=\hsize\raggedright\arraybackslash}X}
-\rowcolor{tcdnavy} \textcolor{white}{\textbf{Parâmetro de referência V7}} & \textcolor{white}{\textbf{Valor}} \\
+\rowcolor{tcdtablehead} \textcolor{black}{\textbf{Parâmetro de referência V7}} & \textcolor{black}{\textbf{Valor}} \\
 Preâmbulo & 32 bytes lógicos 0x2A, codificados em 4B6B. \\
 Quadro lógico /\allowbreak  payload & 21 bytes /\allowbreak  até 16 bytes. \\
 Timeout ACK /\allowbreak  leitura de quadro & 5000 ms /\allowbreak  1600 ms. \\
@@ -49,7 +49,7 @@ TYPE=00, SEQ=00, LEN=03. Os bytes úteis são 54 43 44; completam-se os 16 bytes
 
 \begin{table}[H]\centering\small\caption{Estados intermediários do CRC-8}\label{tab:9}
 \rowcolors{2}{tcdlight}{white}\begin{tabularx}{\linewidth}{>{\hsize=0.7423\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=1.2577\hsize\linewidth=\hsize\raggedright\arraybackslash}X}
-\rowcolor{tcdnavy} \textcolor{white}{\textbf{Entrada (hexadecimal)}} & \textcolor{white}{\textbf{CRC após cada byte (hexadecimal)}} \\
+\rowcolor{tcdtablehead} \textcolor{black}{\textbf{Entrada (hexadecimal)}} & \textcolor{black}{\textbf{CRC após cada byte (hexadecimal)}} \\
 00 00 03 54 43 44 & 00 00 0E 83 8E AA \\
 13 bytes 00 & ED 0C 38 4D C5 9C 11 5A 83 FA 4A 5E 16 \\
 \bottomrule\end{tabularx}\end{table}
@@ -61,6 +61,8 @@ TYPE=00, SEQ=00, LEN=03. Os bytes úteis são 54 43 44; completam-se os 16 bytes
 00 00 00 00 00 00 00 00 00 16
 \end{lstlisting}
 \end{minipage}\par
+O autoteste local compara o CRC recalculado com o FCS gerado pela própria função, verifica uma alteração de bit e testa a ida e volta dos 16 símbolos da tabela 4B6B. Não constitui uma validação independente de todos os padrões de erro nem mede o enlace RF; o exemplo numérico acima complementa a verificação.
+
 O CRC detecta corrupção, mas não corrige o dado diretamente nem garante detecção de todos os padrões de erro possíveis. A recuperação depende da retransmissão.
 
 \setcounter{subsection}{2}\subsection{Codificação 4B6B e ARQ}
@@ -68,7 +70,7 @@ Cada byte lógico é dividido em dois nibbles. Cada nibble de quatro bits é map
 
 \begin{table}[H]\centering\small\caption{Tabela de codificação 4B6B}\label{tab:10}
 \rowcolors{2}{tcdlight}{white}\begin{tabularx}{\linewidth}{>{\hsize=1.5773\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=0.9278\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=0.9278\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=0.9278\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=0.9278\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=0.9278\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=0.9278\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=0.9278\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=0.9278\hsize\linewidth=\hsize\raggedright\arraybackslash}X}
-\rowcolor{tcdnavy} \textcolor{white}{\textbf{Nibble}} & \textcolor{white}{\textbf{0}} & \textcolor{white}{\textbf{1}} & \textcolor{white}{\textbf{2}} & \textcolor{white}{\textbf{3}} & \textcolor{white}{\textbf{4}} & \textcolor{white}{\textbf{5}} & \textcolor{white}{\textbf{6}} & \textcolor{white}{\textbf{7}} \\
+\rowcolor{tcdtablehead} \textcolor{black}{\textbf{Nibble}} & \textcolor{black}{\textbf{0}} & \textcolor{black}{\textbf{1}} & \textcolor{black}{\textbf{2}} & \textcolor{black}{\textbf{3}} & \textcolor{black}{\textbf{4}} & \textcolor{black}{\textbf{5}} & \textcolor{black}{\textbf{6}} & \textcolor{black}{\textbf{7}} \\
 Símbolo & 0D & 0E & 13 & 15 & 16 & 19 & 1A & 1C \\
 Nibble & 8 & 9 & A & B & C & D & E & F \\
 Símbolo & 23 & 25 & 26 & 29 & 2A & 2C & 32 & 34 \\
@@ -78,7 +80,7 @@ O preâmbulo de 32 bytes e o quadro de 21 bytes resultam em (32 + 21) \ensuremat
 \subsubsection*{Stop-and-Wait ARQ: sequência alternada}
 \begin{table}[H]\centering\small\caption{Sequência de transmissão e confirmação}\label{tab:11}
 \rowcolors{2}{tcdlight}{white}\begin{tabularx}{\linewidth}{>{\hsize=0.9979\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=1.0021\hsize\linewidth=\hsize\raggedright\arraybackslash}X}
-\rowcolor{tcdnavy} \textcolor{white}{\textbf{Emissor}} & \textcolor{white}{\textbf{Receptor}} \\
+\rowcolor{tcdtablehead} \textcolor{black}{\textbf{Emissor}} & \textcolor{black}{\textbf{Receptor}} \\
 Envia DATA seq=0 e aguarda. & Valida CRC, aceita DATA e envia ACK seq=0. \\
 ACK perdido: após timeout, reenvia DATA seq=0. & Identifica duplicata, não concatena e reenvia ACK. \\
 Recebe ACK válido, alterna sequência. & Espera próximo quadro novo. \\

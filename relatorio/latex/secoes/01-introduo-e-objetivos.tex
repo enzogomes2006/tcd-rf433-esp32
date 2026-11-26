@@ -15,3 +15,10 @@ Implementar e demonstrar um sistema de comunicação bidirecional capaz de trans
 \setcounter{subsection}{2}\subsection{Requisitos e escopo}
 O enunciado requer comunicação exclusivamente por rádio entre as placas, distância superior a um metro, entrega íntegra, resistência a perturbações, código publicado, cálculo do FCS e evidências da demonstração. O display empregado é OLED SSD1306, em substituição ao LCD mencionado no enunciado; a aceitação pelo docente precisa ser confirmada. A análise diferencia corrupção simulada de perturbação física e não atribui medições a situações sem registro.
 
+
+\subsection{Fundamentação teórica}
+A UART é uma interface serial assíncrona: transmissor e receptor compartilham parâmetros de temporização e formato dos caracteres, sem uma linha de relógio dedicada [7]. Neste projeto, o enlace RF transporta os caracteres da UART entre os nós; a operação da aplicação é semiduplex, com alternância entre transmissão de dados e retorno de confirmações. O barramento I\textsuperscript{2}C, utilizado somente no display do nó B, emprega linhas de dados (SDA) e relógio (SCL) [8].
+
+Em um canal sujeito a erros, o enquadramento delimita unidades de informação e permite verificar sua integridade. O CRC produz um valor de verificação dependente dos bits protegidos e do polinômio utilizado; sua capacidade de detecção depende também do comprimento da mensagem [9]. A codificação 4B6B do projeto representa grupos de quatro bits por símbolos de seis bits válidos, permitindo rejeitar símbolos fora da tabela. Nenhum desses mecanismos, isoladamente, recupera uma mensagem perdida.
+
+O Stop-and-Wait ARQ mantém um quadro pendente de confirmação por vez. Em caso de perda ou ausência do ACK esperado, o emissor repete o quadro; a sequência alternada ajuda o receptor a distinguir dados novos de repetições [10]. A taxa nominal da UART não equivale à vazão útil: preâmbulos, campos de controle, codificação, confirmações e reenvios consomem tempo. A implementação específica e os cálculos são apresentados na Seção 6.

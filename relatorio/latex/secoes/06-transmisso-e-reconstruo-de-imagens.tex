@@ -1,9 +1,9 @@
-\clearpage\section{Transmissão e reconstrução de imagens}
+\section{Transmissão e reconstrução de imagens}
 O script transmissor lê uma imagem, corrige a orientação EXIF, converte para cinza, redimensiona preservando proporção, centraliza em fundo branco, inverte e converte para um bit por pixel. O dithering Floyd–Steinberg pode ser desativado com --sem-dither. O conteúdo transportado é o bitmap resultante, não os bytes do JPEG original.
 
 \begin{table}[H]\centering\small\caption{Estrutura do cabeçalho de imagem}\label{tab:12}
 \rowcolors{2}{tcdlight}{white}\begin{tabularx}{\linewidth}{>{\hsize=1.5052\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=0.4948\hsize\linewidth=\hsize\raggedright\arraybackslash}X}
-\rowcolor{tcdnavy} \textcolor{white}{\textbf{Campo do cabeçalho TCDIM1}} & \textcolor{white}{\textbf{Bytes}} \\
+\rowcolor{tcdtablehead} \textcolor{black}{\textbf{Campo do cabeçalho TCDIM1}} & \textcolor{black}{\textbf{Bytes}} \\
 Identificador ASCII TCDIM1 & 6 \\
 Largura e altura & 1 + 1 \\
 Total de bytes de pixels (uint16 LE) & 2 \\
@@ -12,7 +12,7 @@ Reservados & 2 \\
 \bottomrule\end{tabularx}\end{table}
 \begin{table}[H]\centering\small\caption{Quantidade de bytes e quadros por resolução}\label{tab:13}
 \rowcolors{2}{tcdlight}{white}\begin{tabularx}{\linewidth}{>{\hsize=0.8660\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=1.0309\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=1.0309\hsize\linewidth=\hsize\raggedright\arraybackslash}X>{\hsize=1.0722\hsize\linewidth=\hsize\raggedright\arraybackslash}X}
-\rowcolor{tcdnavy} \textcolor{white}{\textbf{Resolução}} & \textcolor{white}{\textbf{Bytes de pixels}} & \textcolor{white}{\textbf{DATA de pixels}} & \textcolor{white}{\textbf{Quadros lógicos\textsuperscript{1}}} \\
+\rowcolor{tcdtablehead} \textcolor{black}{\textbf{Resolução}} & \textcolor{black}{\textbf{Bytes de pixels}} & \textcolor{black}{\textbf{DATA de pixels}} & \textcolor{black}{\textbf{Quadros lógicos\textsuperscript{1}}} \\
 64\ensuremath{\times}32 & 256 & 16 & 18 \\
 128\ensuremath{\times}64 & 1024 & 64 & 66 \\
 \bottomrule\end{tabularx}\end{table}

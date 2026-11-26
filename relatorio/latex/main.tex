@@ -10,15 +10,16 @@
 \usepackage{graphicx,float,caption,booktabs,tabularx,array}
 \usepackage{enumitem,setspace,fancyhdr,titlesec,listings,pdfpages}
 \usepackage[unicode,colorlinks=true,linkcolor=tcdnavy,urlcolor=tcdteal,bookmarksnumbered=true]{hyperref}
-\definecolor{tcdnavy}{HTML}{17374B}
-\definecolor{tcdteal}{HTML}{276376}
-\definecolor{tcdgray}{HTML}{53616A}
-\definecolor{tcdlight}{HTML}{EDF3F5}
+\definecolor{tcdnavy}{gray}{0}
+\definecolor{tcdteal}{gray}{0}
+\definecolor{tcdgray}{gray}{0}
+\definecolor{tcdlight}{gray}{0.96}
+\definecolor{tcdtablehead}{gray}{0.86}
 \pdfstringdefDisableCommands{\def\times{×}}
-\hypersetup{pdftitle={Transmissão confiável de textos e imagens via RF 433 MHz},pdfauthor={Enzo Aurélio; Felipe Enzo; Enzo Cristian}}
+\hypersetup{pdftitle={Transmissão confiável de textos e imagens via RF 433 MHz},pdfauthor={Enzo Aurélio de Alvarenga Gomes; Enzo Christyan Mubarak Oliveira Arruda; Felipe Enzo Fukase}}
 \setlength{\parindent}{1.25cm}
-\setlength{\parskip}{3pt}
-\setstretch{1.13}
+\setlength{\parskip}{2.5pt}
+\setstretch{1.10}
 \setlength{\emergencystretch}{2em}
 \setcounter{tocdepth}{2}
 \setcounter{secnumdepth}{2}
@@ -32,7 +33,7 @@
 \captionsetup{font={small,sf},labelfont={bf,color=tcdnavy},textfont={color=tcdgray},justification=centering,skip=5pt}
 \captionsetup[table]{position=top}
 \setlength{\tabcolsep}{5pt}
-\renewcommand{\arraystretch}{1.23}
+\renewcommand{\arraystretch}{1.18}
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\small\sffamily\color{tcdgray} IFMT\enspace\textperiodcentered\enspace TCD\enspace\textperiodcentered\enspace RF 433 MHz}
@@ -41,14 +42,16 @@
 \fancyfoot[R]{\small\sffamily\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
-\lstset{basicstyle=\ttfamily\small,backgroundcolor=\color{tcdlight},frame=single,rulecolor=\color{tcdlight},breaklines=true,columns=fullflexible,keepspaces=true,showstringspaces=false,aboveskip=8pt,belowskip=8pt,xleftmargin=4pt,xrightmargin=4pt}
+\lstset{basicstyle=\ttfamily\small,backgroundcolor=\color{tcdlight},frame=single,rulecolor=\color{black!45},breaklines=true,columns=fullflexible,keepspaces=true,showstringspaces=false,aboveskip=8pt,belowskip=8pt,xleftmargin=4pt,xrightmargin=4pt}
 \lstset{literate={á}{{\'{a}}}1 {à}{{\`{a}}}1 {ã}{{\~{a}}}1 {â}{{\^{a}}}1 {é}{{\'{e}}}1 {ê}{{\^{e}}}1 {í}{{\'{i}}}1 {ó}{{\'{o}}}1 {ô}{{\^{o}}}1 {õ}{{\~{o}}}1 {ú}{{\'{u}}}1 {ç}{{\c{c}}}1}
 \newcommand{\instituicao}{Instituto Federal de Mato Grosso}
 \newcommand{\campus}{Campus Cuiabá -- Octayde Jorge da Silva}
 \newcommand{\disciplina}{Transmissão e Comunicação de Dados}
-\newcommand{\autores}{Enzo Aurélio \textperiodcentered\ Felipe Enzo \textperiodcentered\ Enzo Cristian}
+\newcommand{\autores}{Enzo Aurélio de Alvarenga Gomes\\[3pt] Enzo Christyan Mubarak Oliveira Arruda\\[3pt] Felipe Enzo Fukase}
 \newcommand{\docente}{Ruy Barbosa}
 \begin{document}
+\renewcommand{\lstlistingname}{Código}
+\hypersetup{pageanchor=false}
 \begin{titlepage}
 \centering\sffamily
 {\large\bfseries\MakeUppercase{\instituicao}\par}
@@ -65,12 +68,14 @@
 \vfill
 {\large Cuiabá -- MT\par 2026\par}
 \end{titlepage}
+\hypersetup{pageanchor=true}
 
 \input{secoes/00-elementos-iniciais}
 \input{secoes/01-introduo-e-objetivos}
 \input{secoes/02-arquitetura-do-sistema}
 \input{secoes/03-materiais-e-montagem}
 \input{secoes/04-ambiente-de-desenvolvimento}
+\input{secoes/04b-implementacao-dos-codigos}
 \input{secoes/05-protocolo-de-comunicao}
 \input{secoes/06-transmisso-e-reconstruo-de-imagens}
 \input{secoes/07-metodologia-e-resultados-experimentais}
@@ -78,6 +83,4 @@
 \input{secoes/09-concluso}
 \input{secoes/10-anexo-a}
 \input{secoes/11-anexo-b}
-\clearpage
-\includepdf[pages=-,pagecommand={},addtotoc={1,subsection,2,Documento de ensaios (17 páginas),anexo:ensaios}]{anexos/Relatorio_Ensaios_V7.pdf}
 \end{document}

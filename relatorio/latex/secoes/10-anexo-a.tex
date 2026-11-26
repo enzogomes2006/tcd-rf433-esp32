@@ -1,23 +1,117 @@
-\clearpage\appendix\section{Registros dos ensaios T01 a T09}
-{\small Capturas selecionadas do relatório técnico anterior, preservadas como evidências históricas. As legendas identificam os testes e não implicam que a revisão de 24/11 tenha reinspecionado todos os registros primários. Fonte: acervo da equipe, 2026.\par}
-\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=150pt,keepaspectratio]{figuras/old_22_1.png}\caption{T01 — autoteste no circuito A.}\label{fig:old_22_1}\end{figure}
-\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=135pt,keepaspectratio]{figuras/old_23_1.png}\caption{T01 — autoteste no circuito B.}\label{fig:old_23_1}\end{figure}
-\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=180pt,keepaspectratio]{figuras/old_23_2.png}\caption{T02 — recepção da mensagem em B.}\label{fig:old_23_2}\end{figure}
-\clearpage\subsection*{T03, T04 e T05}
-\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=190pt,keepaspectratio]{figuras/old_24_1.png}\caption{T03 — recepção da mensagem em A.}\label{fig:old_24_1}\end{figure}
-\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=145pt,keepaspectratio]{figuras/old_24_2.png}\caption{T04 — texto longo e contadores de B.}\label{fig:old_24_2}\end{figure}
-\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=195pt,keepaspectratio]{figuras/old_25_1.png}\caption{T05 — recepção do texto após erro simulado.}\label{fig:old_25_1}\end{figure}
-\clearpage\subsection*{T06 e T07}
-\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=130pt,keepaspectratio]{figuras/old_25_2.png}\caption{T06 — contadores do transmissor.}\label{fig:old_25_2}\end{figure}
-\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=130pt,keepaspectratio]{figuras/old_25_3.png}\caption{T06 — contadores do receptor, incluindo três erros CRC.}\label{fig:old_25_3}\end{figure}
-\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=230pt,keepaspectratio]{figuras/old_26_1.png}\caption{T07 — registro do transmissor.}\label{fig:old_26_1}\end{figure}
-{\small T06: os três erros CRC estão registrados, mas o critério de duas mensagens não foi comprovado.\par}
-\clearpage\subsection*{T07 e T08}
-\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=185pt,keepaspectratio]{figuras/old_26_2.png}\caption{T07 — registro do receptor.}\label{fig:old_26_2}\end{figure}
-\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=185pt,keepaspectratio]{figuras/old_26_3.png}\caption{T08 — confirmação do END após retransmissão.}\label{fig:old_26_3}\end{figure}
-\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=180pt,keepaspectratio]{figuras/old_27_1.png}\caption{T08 — contadores do receptor e ACK omitido.}\label{fig:old_27_1}\end{figure}
-\clearpage\subsection*{T09}
-\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=180pt,keepaspectratio]{figuras/old_27_2.png}\caption{T09 — conclusão do lote no transmissor.}\label{fig:old_27_2}\end{figure}
-\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=180pt,keepaspectratio]{figuras/old_27_3.png}\caption{T09 — dez mensagens recebidas e duplicatas.}\label{fig:old_27_3}\end{figure}
-\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=180pt,keepaspectratio]{figuras/old_28_1.png}\caption{T09 — recepção das últimas mensagens do lote.}\label{fig:old_28_1}\end{figure}
-{\small Os contadores do lote incluem atividade residual; os 113 reenvios não representam uma taxa isolada do T09.\par}
+\clearpage\appendix\section{Evidências experimentais dos testes T01 a T14}
+\label{anexo:evidencias}
+{\small As capturas de T01–T09 são os registros selecionados do relatório técnico anterior, preservados como evidências históricas; a revisão de 24/11/2026 não reinspecionou todos os registros primários. As figuras de T10–T14 provêm do relatório consolidado de ensaios, disponibilizado separadamente e identificado no Anexo B, com indicação da figura original. Todas as imagens são provenientes do acervo da equipe. As evidências ilustram os resultados, sem eliminar as ressalvas experimentais descritas no corpo do relatório.\par}
+\subsection{T01 — Autoteste do CRC-8 e da codificação 4B6B}
+\label{anexo:t01}
+{\small Autoteste local nos dois circuitos; não mede a qualidade do enlace RF.\par}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=150pt,keepaspectratio]{figuras/old_22_1.png}\caption[T01 — Autoteste no circuito A.]{T01 — Autoteste no circuito A.}\label{fig:old_22_1}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=135pt,keepaspectratio]{figuras/old_23_1.png}\caption[T01 — Autoteste no circuito B.]{T01 — Autoteste no circuito B.}\label{fig:old_23_1}\end{figure}
+\clearpage
+\subsection{T02 — Texto curto de A para B}
+\label{anexo:t02}
+{\small Registro da recepção de texto no circuito B.\par}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=170pt,keepaspectratio]{figuras/old_23_2.png}\caption[T02 — Recepção da mensagem em B.]{T02 — Recepção da mensagem em B.}\label{fig:old_23_2}\end{figure}
+\subsection{T03 — Texto curto de B para A}
+\label{anexo:t03}
+{\small Registro da recepção de texto no circuito A.\par}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=190pt,keepaspectratio]{figuras/old_24_1.png}\caption[T03 — Recepção da mensagem em A.]{T03 — Recepção da mensagem em A.}\label{fig:old_24_1}\end{figure}
+\clearpage
+\subsection{T04 — Fragmentação e remontagem de texto longo}
+\label{anexo:t04}
+{\small Registro de mensagem completa e dos contadores do receptor.\par}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=145pt,keepaspectratio]{figuras/old_24_2.png}\caption[T04 — Texto longo e contadores de B.]{T04 — Texto longo e contadores de B.}\label{fig:old_24_2}\end{figure}
+\subsection{T05 — Detecção de erro e recuperação por CRC-8}
+\label{anexo:t05}
+{\small Captura da recepção após erro simulado, com recuperação pelo protocolo.\par}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=195pt,keepaspectratio]{figuras/old_25_1.png}\caption[T05 — Recepção do texto após erro simulado.]{T05 — Recepção do texto após erro simulado.}\label{fig:old_25_1}\end{figure}
+\clearpage
+\subsection{T06 — Três erros simulados}
+\label{anexo:t06}
+{\small Comprovação parcial: três CRCs incorretos foram registrados, mas não se comprovou a entrega das duas mensagens previstas.\par}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=150pt,keepaspectratio]{figuras/old_25_2.png}\caption[T06 — Contadores do transmissor.]{T06 — Contadores do transmissor.}\label{fig:old_25_2}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=150pt,keepaspectratio]{figuras/old_25_3.png}\caption[T06 — Contadores do receptor, incluindo três erros CRC.]{T06 — Contadores do receptor, incluindo três erros CRC.}\label{fig:old_25_3}\end{figure}
+\clearpage
+\subsection{T07 — Perda proposital do ACK de DATA}
+\label{anexo:t07}
+{\small Registros do transmissor e do receptor durante o ensaio de omissão de confirmação.\par}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=225pt,keepaspectratio]{figuras/old_26_1.png}\caption[T07 — Registro do transmissor.]{T07 — Registro do transmissor.}\label{fig:old_26_1}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=185pt,keepaspectratio]{figuras/old_26_2.png}\caption[T07 — Registro do receptor.]{T07 — Registro do receptor.}\label{fig:old_26_2}\end{figure}
+\clearpage
+\subsection{T08 — Perda proposital do ACK de END}
+\label{anexo:t08}
+{\small O encerramento foi confirmado após retransmissão; os contadores incluem atividade residual.\par}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=185pt,keepaspectratio]{figuras/old_26_3.png}\caption[T08 — Confirmação do END após retransmissão.]{T08 — Confirmação do END após retransmissão.}\label{fig:old_26_3}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=180pt,keepaspectratio]{figuras/old_27_1.png}\caption[T08 — Contadores do receptor e ACK omitido.]{T08 — Contadores do receptor e ACK omitido.}\label{fig:old_27_1}\end{figure}
+\clearpage
+\subsection{T09 — Estabilidade em curta distância}
+\label{anexo:t09}
+{\small Dez mensagens recebidas. Os contadores incluem atividade residual; os 113 reenvios não representam uma taxa isolada do T09.\par}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=180pt,keepaspectratio]{figuras/old_27_2.png}\caption[T09 — Conclusão do lote no transmissor.]{T09 — Conclusão do lote no transmissor.}\label{fig:old_27_2}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=180pt,keepaspectratio]{figuras/old_27_3.png}\caption[T09 — Dez mensagens recebidas e duplicatas.]{T09 — Dez mensagens recebidas e duplicatas.}\label{fig:old_27_3}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=180pt,keepaspectratio]{figuras/old_28_1.png}\caption[T09 — Recepção das últimas mensagens do lote.]{T09 — Recepção das últimas mensagens do lote.}\label{fig:old_28_1}\end{figure}
+\clearpage
+\subsection{T10 — Comunicação acima de 1 metro}
+\label{anexo:t10}
+{\small Lote concluído a 1,12 m: 10 mensagens recebidas, 19 retransmissões e 10 END confirmados. Tempo estimado de 120–180 s. A captura não contém os dez textos integrais.\par}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=140pt,keepaspectratio]{figuras/new_6_1.jpg}\caption[T10 — Bancada com trena e circuitos separados.]{T10 — Bancada com trena e circuitos separados (relatório de ensaios, fig. 1).}\label{fig:anexo-t10-6-1}\end{figure}
+\begin{figure}[H]\centering
+\begin{minipage}[t]{0.48\linewidth}\centering\includegraphics[width=\linewidth,height=150pt,keepaspectratio]{figuras/new_6_2.jpg}\caption[T10 — Detalhe da medição.]{T10 — Detalhe da medição (relatório de ensaios, fig. 2).}\label{fig:anexo-t10-6-2}\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\linewidth}\centering\includegraphics[width=\linewidth,height=150pt,keepaspectratio]{figuras/new_6_3.jpg}\caption[T10 — Montagem do receptor B.]{T10 — Montagem do receptor B (relatório de ensaios, fig. 3).}\label{fig:anexo-t10-6-3}\end{minipage}
+\end{figure}
+\clearpage\subsubsection*{Registros dos monitores seriais}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=230pt,keepaspectratio]{figuras/new_7_1.png}\caption[T10 — Circuito A: lote concluído, 49 quadros e 19 retransmissões.]{T10 — Circuito A: lote concluído, 49 quadros e 19 retransmissões (relatório de ensaios, fig. 4).}\label{fig:anexo-t10-7-1}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=150pt,keepaspectratio]{figuras/new_7_2.jpeg}\caption[T10 — Circuito B: 10 mensagens recebidas, 19 duplicatas e 98 ACKs.]{T10 — Circuito B: 10 mensagens recebidas, 19 duplicatas e 98 ACKs (relatório de ensaios, fig. 5).}\label{fig:anexo-t10-7-2}\end{figure}
+\clearpage
+\subsection{T11 — Perturbações físicas do enlace}
+\label{anexo:t11}
+{\small Os dois lotes foram concluídos a 1,12 m. Com mochila: 176 s e 13 reenvios; sem mochila: 200 s e 14 reenvios. A foto da condição livre é a referência de T10. O resultado não comprova melhora causada pelo obstáculo.\par}
+\begin{figure}[H]\centering
+\begin{minipage}[t]{0.48\linewidth}\centering\includegraphics[width=\linewidth,height=130pt,keepaspectratio]{figuras/new_8_1.jpg}\caption[T11 — Condição livre (foto de referência do T10).]{T11 — Condição livre (foto de referência do T10) (relatório de ensaios, fig. 6).}\label{fig:anexo-t11-8-1}\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\linewidth}\centering\includegraphics[width=\linewidth,height=150pt,keepaspectratio]{figuras/new_8_2.jpg}\caption[T11 — Mochila interposta no T11.]{T11 — Mochila interposta no T11 (relatório de ensaios, fig. 7).}\label{fig:anexo-t11-8-2}\end{minipage}
+\end{figure}
+\subsubsection*{Registros dos monitores seriais}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=150pt,keepaspectratio]{figuras/new_9_1.png}\caption[T11 — A, com mochila: lote concluído; 13 reenvios.]{T11 — A, com mochila: lote concluído; 13 reenvios (relatório de ensaios, fig. 8).}\label{fig:anexo-t11-9-1}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=130pt,keepaspectratio]{figuras/new_9_2.jpeg}\caption[T11 — B, com mochila: 10 mensagens e 13 duplicatas.]{T11 — B, com mochila: 10 mensagens e 13 duplicatas (relatório de ensaios, fig. 9).}\label{fig:anexo-t11-9-2}\end{figure}
+\subsubsection*{Registros dos monitores seriais — condição sem mochila}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=150pt,keepaspectratio]{figuras/new_9_3.png}\caption[T11 — A, sem mochila: lote concluído; 14 reenvios.]{T11 — A, sem mochila: lote concluído; 14 reenvios (relatório de ensaios, fig. 10).}\label{fig:anexo-t11-9-3}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=130pt,keepaspectratio]{figuras/new_9_4.jpeg}\caption[T11 — B, sem mochila: 10 mensagens e 14 duplicatas.]{T11 — B, sem mochila: 10 mensagens e 14 duplicatas (relatório de ensaios, fig. 11).}\label{fig:anexo-t11-9-4}\end{figure}
+\clearpage
+\subsection{T12 — Imagem monocromática 64 × 32 de A para B}
+\label{anexo:t12}
+{\small 256 bytes recebidos a 1,12 m em 112 s; CRC32 DAF56504 e SHA-256 dos pixels coincidentes. END confirmado na segunda tentativa. O erro serial ocorreu após a validação e o salvamento.\par}
+\begin{figure}[H]\centering
+\begin{minipage}[t]{0.48\linewidth}\centering\includegraphics[width=\linewidth,height=145pt,keepaspectratio]{figuras/new_10_1.png}\caption[T12 — PBM reconstruído, ampliado sem interpolação.]{T12 — PBM reconstruído, ampliado sem interpolação (relatório de ensaios, fig. 12).}\label{fig:anexo-t12-10-1}\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\linewidth}\centering\includegraphics[width=\linewidth,height=145pt,keepaspectratio]{figuras/new_10_2.jpg}\caption[T12 — Imagem centralizada no OLED de B.]{T12 — Imagem centralizada no OLED de B (relatório de ensaios, fig. 13).}\label{fig:anexo-t12-10-2}\end{minipage}
+\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=150pt,keepaspectratio]{figuras/new_11_1.png}\caption[T12 — A: resolução, CRC32 e SHA-256 antes do envio.]{T12 — A: resolução, CRC32 e SHA-256 antes do envio (relatório de ensaios, fig. 14).}\label{fig:anexo-t12-11-1}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=155pt,keepaspectratio]{figuras/new_11_2.png}\caption[T12 — A: 256/256 bytes e confirmação RF.]{T12 — A: 256/256 bytes e confirmação RF (relatório de ensaios, fig. 15).}\label{fig:anexo-t12-11-2}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=155pt,keepaspectratio]{figuras/new_11_3.jpeg}\caption[T12 — B: validação, hashes e salvamento; erro serial posterior.]{T12 — B: validação, hashes e salvamento; erro serial posterior (relatório de ensaios, fig. 16).}\label{fig:anexo-t12-11-3}\end{figure}
+\clearpage
+\subsection{T13 — Imagem monocromática 128 × 64 de A para B}
+\label{anexo:t13}
+{\small 1.024 bytes recebidos em 720 s; CRC32 2749D731 e SHA-256 coincidentes. A distância foi reduzida de 1,12 m para 0,60 m durante a sessão; END confirmado na primeira tentativa.\par}
+\begin{figure}[H]\centering
+\begin{minipage}[t]{0.48\linewidth}\centering\includegraphics[width=\linewidth,height=145pt,keepaspectratio]{figuras/new_12_1.png}\caption[T13 — PBM reconstruído (ampliado).]{T13 — PBM reconstruído (ampliado) (relatório de ensaios, fig. 17).}\label{fig:anexo-t13-12-1}\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\linewidth}\centering\includegraphics[width=\linewidth,height=145pt,keepaspectratio]{figuras/new_12_2.jpg}\caption[T13 — Imagem ocupando o OLED de B.]{T13 — Imagem ocupando o OLED de B (relatório de ensaios, fig. 18).}\label{fig:anexo-t13-12-2}\end{minipage}
+\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=150pt,keepaspectratio]{figuras/new_13_1.png}\caption[T13 — A: resolução 128 × 64, CRC32 e SHA-256.]{T13 — A: resolução 128 × 64, CRC32 e SHA-256 (relatório de ensaios, fig. 19).}\label{fig:anexo-t13-13-1}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=150pt,keepaspectratio]{figuras/new_13_2.png}\caption[T13 — A: 1.024/1.024 bytes e END confirmado.]{T13 — A: 1.024/1.024 bytes e END confirmado (relatório de ensaios, fig. 20).}\label{fig:anexo-t13-13-2}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=200pt,keepaspectratio]{figuras/new_13_3.jpeg}\caption[T13 — B: validação, hashes e arquivos reconstruídos.]{T13 — B: validação, hashes e arquivos reconstruídos (relatório de ensaios, fig. 21).}\label{fig:anexo-t13-13-3}\end{figure}
+\clearpage
+\subsection{T14 — Imagem monocromática 64 × 32 de B para A}
+\label{anexo:t14}
+{\small 256 bytes recebidos a 1,15 m; CRC32 607BACD6 e SHA-256 coincidentes. Tempo estimado de 120–180 s na sessão bem-sucedida. A primeira tentativa foi interrompida; após diagnóstico, cabeçalho confirmado na quarta tentativa e END na segunda.\par}
+\begin{figure}[H]\centering
+\begin{minipage}[t]{0.48\linewidth}\centering\includegraphics[width=\linewidth,height=145pt,keepaspectratio]{figuras/new_14_1.png}\caption[T14 — PBM reconstruído no A (ampliado).]{T14 — PBM reconstruído no A (ampliado) (relatório de ensaios, fig. 22).}\label{fig:anexo-t14-14-1}\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\linewidth}\centering\includegraphics[width=\linewidth,height=145pt,keepaspectratio]{figuras/new_14_2.jpg}\caption[T14 — Montagens e trena; distância informada de 1,15 m.]{T14 — Montagens e trena; distância informada de 1,15 m (relatório de ensaios, fig. 23).}\label{fig:anexo-t14-14-2}\end{minipage}
+\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=150pt,keepaspectratio]{figuras/new_15_1.jpeg}\caption[T14 — B: início do envio com CRC32 e SHA-256.]{T14 — B: início do envio com CRC32 e SHA-256 (relatório de ensaios, fig. 24).}\label{fig:anexo-t14-15-1}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=150pt,keepaspectratio]{figuras/new_15_2.jpeg}\caption[T14 — B: envio completo, END confirmado na segunda tentativa.]{T14 — B: envio completo, END confirmado na segunda tentativa (relatório de ensaios, fig. 25).}\label{fig:anexo-t14-15-2}\end{figure}
+\clearpage\subsubsection*{Recepção e diagnóstico da tentativa interrompida}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=155pt,keepaspectratio]{figuras/new_15_3.png}\caption[T14 — A: 256/256 bytes, hashes e arquivos salvos.]{T14 — A: 256/256 bytes, hashes e arquivos salvos (relatório de ensaios, fig. 26).}\label{fig:anexo-t14-15-3}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=245pt,keepaspectratio]{figuras/new_15_4.jpeg}\caption[T14 — Primeira tentativa: timeouts e interrupção manual (KeyboardInterrupt).]{T14 — Primeira tentativa: timeouts e interrupção manual (KeyboardInterrupt) (relatório de ensaios, fig. 27).}\label{fig:anexo-t14-15-4}\end{figure}

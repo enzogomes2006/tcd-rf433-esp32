@@ -4,7 +4,7 @@ Projeto final de **Transmissão e Comunicação de Dados** — IFMT, Campus Cuia
 
 | Equipe | Professor | Entrega prevista |
 | --- | --- | --- |
-| Enzo Aurélio, Felipe Enzo e Enzo Christyan | Ruy Barbosa | 26/11/2026 |
+| Enzo Aurélio de Alvarenga Gomes, Enzo Christyan Mubarak Oliveira Arruda e Felipe Enzo Fukase | Ruy Barbosa | 26/11/2026 |
 
 **ESP32 · RF 433 MHz · CRC-8 · 4B6B · Stop-and-Wait ARQ · Texto e imagens bidirecionais**
 
@@ -17,7 +17,7 @@ O sistema conecta dois computadores por meio de dois ESP32. Cada computador comu
 
 ### Relatório técnico
 
-**[Consultar relatório técnico completo (PDF)](relatorio/Relatorio_TCD_Final.pdf)** · 52 páginas · LaTeX
+**[Consultar relatório técnico completo (PDF)](relatorio/Relatorio_TCD_Final.pdf)** · 43 páginas · LaTeX
 
 Documentação do projeto com arquitetura, montagem, esquemáticos atualizados, protocolo, resultados e evidências dos 14 ensaios. Consulte também o [relatório de ensaios (PDF)](relatorio/Relatorio_Ensaios_V7.pdf) e o [projeto LaTeX editável](relatorio/latex/).
 
@@ -38,7 +38,7 @@ Outros arquivos: [Dependências Python](computador/requirements.txt) · [Imagem 
 
 | Acervo / documentação | Conteúdo |
 | --- | --- |
-| [**Relatório técnico completo (PDF)**](relatorio/Relatorio_TCD_Final.pdf) | Documento de 52 páginas com esquemáticos atualizados |
+| [**Relatório técnico completo (PDF)**](relatorio/Relatorio_TCD_Final.pdf) | Documento de 43 páginas — revisão acadêmica, esquemáticos e evidências |
 | [Relatório de ensaios V7 (PDF)](relatorio/Relatorio_Ensaios_V7.pdf) | Procedimentos, resultados e evidências de T01–T14 |
 | [Projeto LaTeX](relatorio/latex/) | Fontes editáveis e figuras para Overleaf |
 | [**Resultados experimentais**](#8-resultados-experimentais) | Procedimentos, resultados e contadores dos testes T01–T14 |
